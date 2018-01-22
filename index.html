@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel='stylesheet' type='text/css' href='styles.css'>
+  <title>Calibre Media Player</title>
+  <h1>Calibre Media Player</h1>
+</head>
+
+<body>
+  <div class="grid">
+
+    <div id="header" class="header">
+    </div>
+
+
+    <div id="player" class="player">
+      <!-- (not sure what player tag should be) -->
+      <p id="title-artist"></p>
+    </div>
+
+
+    <div id="comments" class="comments">
+      <h3>Comments:</h3>
+        <span>Likes:
+          <span id="likes">0</span>
+        </span>
+        <button id="like_button">Like</button>
+    </div>
+
+    <div id="playlist" class="playlist"></div>
+    <div id="library" class="library"></div>
+    <div id="footer" class="footer"></div>
+  </div>
+  <script type="text/javascript" src='src/index.js'></script>
+  <script type="text/javascript" src='src/Comment.js'></script>
+  <script type="text/javascript" src='src/User.js'></script>
+  <script type="text/javascript" src='src/Playlist.js'></script>
+  <script type="text/javascript" src='src/Media.js'></script>
+
+  </body>
+</html>
