@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  background: lightgrey;
+  height: 100vh;
+  text-align: center;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 5% 90%;
+
+  grid-template-areas:
+  "header"
+  "content"
+  "footer";
+
+  height: 100%;
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.header {
+  grid-area: header;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+.footer {
+  grid-area: footer;
+  box-sizing: border-box;
+  border: 2px solid blue;
+}
+
+.media-container {
+  grid-area: content;
+  grid-template-columns: 50% 50%;
+  grid-template-areas:
+  "video    recommend"
+  "comments recommend";
+
+
+  box-sizing: border-box;
+  border: 2px solid yellow;
+  display: none;
+}
+
+  #video {
+    grid-area: video;
+    box-sizing: border-box;
+    border: 2px solid green;
+  }
+  #recommend {
+    grid-area: recommend;
+    box-sizing: border-box;
+    border: 2px solid teal;
+  }
+
+.browse-container {
+  grid-area: content;
+  box-sizing: border-box;
+  border: 2px solid orange;
+  display: none;
+}
