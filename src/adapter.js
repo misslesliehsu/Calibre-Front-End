@@ -1,11 +1,10 @@
 const Adapter = (function(){
   const BASE_URL = `http://localhost:3000/api/v1/`
 
-    return class Adapter {
-
+  return class Adapter {
     static getPlaylists(){
       return fetch(`${BASE_URL}playlists`)
-      .then( res => res.json())
+      .then(res => res.json())
     }
 
     static getComments(){
@@ -20,7 +19,7 @@ const Adapter = (function(){
 
     static postPlaylist(name, user_id, medium_id){
       return fetch(`${BASE_URL}playlists/`, {
-        method: post,
+        method: 'post',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -28,7 +27,7 @@ const Adapter = (function(){
           playlist:{
             name: name,
             user_id: user_id,
-            medium_id: medium:id
+            medium_id: medium_id
           }
         })
       }).then(res => res.json())
@@ -36,7 +35,7 @@ const Adapter = (function(){
 
     static postComment(content, user_id, medium_id){
       return fetch(`${BASE_URL}comments/`, {
-        method: post,
+        method: 'post',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -44,11 +43,11 @@ const Adapter = (function(){
           comment:{
             content: content,
             user_id: user_id,
-            medium_id: medium:id
+            medium_id: medium_id
           }
         })
       }).then(res => res.json())
     }
 
   }
-}
+})()

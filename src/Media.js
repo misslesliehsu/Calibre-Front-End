@@ -1,15 +1,14 @@
-class Image {
-
-  constructor(id, type, title, artist, like_count, file_src){
+class Medium {
+  constructor({id, type, title, artist, likes, filesource}){
     this.id = id
     this.type = type
     this.title = title
     this.artist = artist
-    this.like_count = like_count
-    this.file_src = file_src
+    this.like_count = likes
+    this.file_src = filesource
   }
 
-  renderAsMain(){
+  templateMain(){
     //render source of media
     let playerTag = document.getElementById('player')
     playerTag.src = this.file_src

@@ -46,17 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const recommend = document.querySelector('#recommendations')
   const search = document.querySelector('#search')
 
-
-
-
+// add event listener to searchbar
   let input = ""
   searchBar.addEventListener('keyup', (event) => {
     input = searchBar.value
-    render()
-
+    handleSearchBar()
   })
 
-  function render() {
+//handle searchbar functionality
+  function handleSearchBar() {
     search.innerHTML = ""
     start = allSongs.filter(media => {
       return media.title.toLowerCase().startsWith(input.toLowerCase())
@@ -69,12 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const media of result) {
       if (input.length > 0) {
         createDiv(media, search);
-
       }
-
     }
   }
 
+// creates a div for recommendations and search.
   function createDiv(media, parent) {
 
     let mDiv = document.createElement('div')
@@ -106,9 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 })
-
-
-
 
 let allSongs = [
   {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},

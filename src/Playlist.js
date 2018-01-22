@@ -22,10 +22,8 @@ class Playlist {
       track++
       Playlist.play(playlist[track])
     })
-
-
   }
-
+  
   static play(media) {
     let video = document.querySelector('video')
     let audio = document.querySelector('audio')
@@ -55,8 +53,6 @@ class Playlist {
 
       name = document.createElement('h3')
       name.innerText = media.name
-
-
     })
   }
 
