@@ -1,9 +1,4 @@
 class Image {
-  Type
-  Title
-  Artist
-  Likes
-  File_src
 
   constructor(id, type, title, artist, like_count, file_src){
     this.id = id

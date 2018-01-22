@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <link rel='stylesheet' type='text/css' href='style.css'>
@@ -18,8 +17,10 @@
 
     <div id="player" class="player">
       <!-- (not sure what player tag should be) -->
-      <p id="title-artist"></p>
       This is the Player Area
+      <video controls autoplay width="auto" style="display:none;"></video>
+      <audio controls autoplay width="auto" style="display:none;"></audio>
+      <p id="title-artist"></p>
     </div>
 
 
@@ -33,11 +34,22 @@
     </div>
 
     <div id="playlist" class="playlist">
-      This is the playlist area
+      <div>
+        This is where one playlist item would go
+      </div>
+      <div>
+        This is where a second playlist item would go
+      </div>
     </div>
 
-    <div id="library" class="library">
-    this is the library area
+    <div id="more-media" class="more-media">
+      this is the recommendations / library area<br>
+      <input id='search-bar' type="text" name="" value="">
+      <div id="recommendations">
+        <li>this is an example recommendation</li>
+        <button type="button" name="button">Show More</button>
+      </div>
+
     </div>
 
 
@@ -49,7 +61,7 @@
   <script type="text/javascript" src='src/index.js'></script>
   <script type="text/javascript" src='src/Comment.js'></script>
   <script type="text/javascript" src='src/User.js'></script>
-  <script type="text/javascript" src='src/Playlist.js'></script>
+  <script type="text/javascript" src='src/playlist.js'></script>
   <script type="text/javascript" src='src/Media.js'></script>
 
   </body>

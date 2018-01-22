@@ -89,7 +89,7 @@ ul {
   ". player player playlist ."
   ". player player playlist ."
   ". comments comments playlist ."
-  ". library library library ."
+  ". more-media more-media more-media ."
   ". footer footer footer .";
 
 }
@@ -119,8 +119,14 @@ ul {
 
 }
 
-.library {
-  grid-area: library;
+
+.playlist div {
+  border: 2px solid #dddddd;
+}
+
+
+.more-media {
+  grid-area: more-media;
   border: 2px solid #dddddd;
 
 }
