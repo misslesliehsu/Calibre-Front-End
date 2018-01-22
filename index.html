@@ -3,21 +3,23 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel='stylesheet' type='text/css' href='styles.css'>
+  <link rel='stylesheet' type='text/css' href='style.css'>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
   <title>Calibre Media Player</title>
-  <h1>Calibre Media Player</h1>
+  <h1 style="margin: 50px">Calibre Media Player</h1>
+  <br>
 </head>
 
 <body>
   <div class="grid">
 
-    <div id="header" class="header">
-    </div>
+    <!-- <div id="header" class="header"></div> -->
 
 
     <div id="player" class="player">
       <!-- (not sure what player tag should be) -->
       <p id="title-artist"></p>
+      This is the Player Area
     </div>
 
 
@@ -27,11 +29,22 @@
           <span id="likes">0</span>
         </span>
         <button id="like_button">Like</button>
+        <li>this is a fake comment</li>
     </div>
 
-    <div id="playlist" class="playlist"></div>
-    <div id="library" class="library"></div>
-    <div id="footer" class="footer"></div>
+    <div id="playlist" class="playlist">
+      This is the playlist area
+    </div>
+
+    <div id="library" class="library">
+    this is the library area
+    </div>
+
+
+    <div id="footer" class="footer">
+    this is the footer
+    </div>
+
   </div>
   <script type="text/javascript" src='src/index.js'></script>
   <script type="text/javascript" src='src/Comment.js'></script>

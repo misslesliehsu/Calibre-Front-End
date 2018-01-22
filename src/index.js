@@ -30,26 +30,27 @@
 //   }
 //
 //
-// //EVENT LISTENER CALLBACK FUNCTIONS/////////////////
-// function likeClicked () {
-//   //increase the number on the page currently
-//   //THEN (optimistic) patch fetch for this image
-//   let likeTag = document.getElementById('likes')
-//   let newLikeCount = parseInt(likeTag.innerHTML, 10) + 1
-//   likeTag.innerHTML = newLikeCount
-//
-//   fetch(likeURL, {
-//               method: 'POST',
-//               headers: {
-//                   'Content-Type': 'application/json',
-//                   'Accept': 'application/json'
-//               },
-//               body: JSON.stringify({
-//                 image_id: imageId
-//               })
-//             })
-// }
-//
+//EVENT LISTENER CALLBACK FUNCTIONS/////////////////
+  //
+  // function likeClicked () {
+  //   //increase the number on the page currently
+  //   //THEN (optimistic) patch fetch for this image
+  //   let likeTag = document.getElementById('likes')
+  //   let newLikeCount = parseInt(likeTag.innerHTML, 10) + 1
+  //   likeTag.innerHTML = newLikeCount
+
+  // fetch(likeURL, {
+  //             method: 'POST',
+  //             headers: {
+  //                 'Content-Type': 'application/json',
+  //                 'Accept': 'application/json'
+  //             },
+  //             body: JSON.stringify({
+  //               image_id: imageId
+  //             })
+  //           })
+}
+
 // function commentSubmitted() {
 //   //add + render comment & clear form
 //   //POST
