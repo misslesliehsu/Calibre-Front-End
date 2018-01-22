@@ -26,10 +26,30 @@ class Image {
 
 
   //note - songs will either come out as being in the Library, Playlist (mutually exclusive) and ALSO possibly Main
-  renderAsPlaylistItem(){
+  templatePlaylistItem(){
     //will be similar as above, but to different parts of the HTML
     //should have button to remove from playlist
+    //also buttons to move up & down
+
+    let playlistArea = document.getElementById('playlist')
+    let playlistItem = document.createElement('div')
+    playlistItem.id = this.id
+    playlistItem.innerHTML = `
+      <div class='playlist-main'>
+        test text
+        ${this.title} + "by " + ${this.artist}
+        <button class="playlistPlayNow">Play Now</button>
+        <button class="playlistRemove">X</button>
+      </div>
+      <div class="playlist-order">
+        <i class="fa fa-angle-double-up" style="font-size:24px;color:gray"></i>
+        <i class="fa fa-angle-double-down" style="font-size:24px;color:gray"></i>
+      </div>
+      `
+    return playlistItem
   }
+
+
 
   renderAsLibraryItem(){
     //will be similar as above, but to different parts of the HTML

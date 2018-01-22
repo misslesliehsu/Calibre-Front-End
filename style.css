@@ -116,12 +116,51 @@ ul {
 .playlist {
   grid-area: playlist;
   border: 2px solid #dddddd;
-
 }
 
 
-.playlist div {
+.playlist div {  /*a whole single playlist item/box*/
   border: 2px solid #dddddd;
+  position: relative;
+  height: 80px;
+}
+
+.playlist div .playlist-main {
+  border: 1px solid transparent;
+  position: absolute;
+  right:0;
+  width: 85%;
+  padding-top: 3px;
+}
+
+
+.playlist div .playlist-order {
+  border: 1px solid transparent;
+  position: absolute;
+  left: 0;
+  width: 10%;
+}
+
+.playlist div .fa-angle-double-up { /*order up*/
+  position: absolute;
+  top:20%;
+}
+
+.playlist div .fa-angle-double-down { /*order down*/
+  position: absolute;
+  bottom:20%;
+}
+
+.playlist div .playlistPlayNow { /*the play button*/
+  position: absolute;
+  bottom:5px ;
+}
+
+.playlist div .playlistRemove{  /*the remove button*/
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 3px;
 }
 
 
