@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   //   document.querySelector('.browse-container').style.display = 'grid'
   // })
   //
-  // document.querySelector('#playlist')
-  // .addEventListener('click', (event) => {
-  //   div = document.querySelector('#video')
-  //   Playlist.newStart(div, videos1)
-  // })
+  document.querySelector('#playlist-button')
+  .addEventListener('click', (event) => {
+    div = document.querySelector('#player')
+    Playlist.start(div, videos1)
+  })
 
 
   let likeButton = document.getElementById('like_button')
@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 let videos1 = [
-  {source: "pokemonr.mp3", type: "audio", name: "Pokemon R Battle Theme"},
-  {source: "video.mp4", type: "video", name: "Developers Developers Developers"},
-  {source: "pokemonx.mp3", type: "audio", name: "Pokemon X Battle Theme"},
-  {source: "hd.mp4", type: "video", name: "Android Wireless Earbud"}
+  {source: "Media/pokemonr.mp3", type: "audio", name: "Pokemon R Battle Theme"},
+  {source: "Media/video.mp4", type: "video", name: "Developers Developers Developers"},
+  {source: "Media/pokemonx.mp3", type: "audio", name: "Pokemon X Battle Theme"},
+  {source: "Media/hd.mp4", type: "video", name: "Android Wireless Earbud"}
 ]
