@@ -83,7 +83,7 @@ ul {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 4fr 5fr 4fr 1fr;
   grid-template-areas:
   ". header header header ."
   ". player player playlist ."
@@ -142,4 +142,25 @@ ul {
 
 .unhidden{
     display:block;
+}
+
+.card {
+  display: inline-block;
+  margin: 10px;
+  box-sizing: border-box;
+  border: 2px solid red;
+  width: 15%;
+}
+
+.rButton {
+  width: 45%;
+  border: 0px;
+}
+
+/* .rButton:focus {
+  outline: none;
+} */
+
+audio {
+  width: 600px;
 }
