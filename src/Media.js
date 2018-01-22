@@ -53,5 +53,19 @@ class Medium {
   renderAsLibraryItem(){
     //will be similar as above, but to different parts of the HTML
   }
+  
+  templateSearchItem() {
+    let mediaDiv = document.createElement('div')
+    mediaDiv.className = 'card'
+    mediaDiv.id = media.id
+
+    mediaDiv.innerHTML = `
+    <p>${this.title}</p>
+    <p>${this.filesource}</p>
+    <button class="addButton">+</button>
+    <button class="playButton">►</button>
+    `
+    return mediaDiv
+  }
 
 }
