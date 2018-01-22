@@ -36,15 +36,14 @@ class Playlist {
       case "video":
         audio.style.display = "none"
         video.style.display = "inline"
-        video.height = video.parentNode.offsetHeight
-        console.log(video.parentNode.offsetHeight);
-        video.src = media.source
+        video.width = video.parentNode.clientWidth
+        video.src = media.filesource
         break;
       case "audio":
         video.style.display = "none"
         audio.style.display = "inline"
-        audio.height = audio.parentNode.clientHeight
-        audio.src = media.source
+        audio.width = audio.parentNode.clientWidth
+        audio.src = media.filesource
         break;
     }
   }

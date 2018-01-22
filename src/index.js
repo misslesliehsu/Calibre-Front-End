@@ -31,24 +31,111 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
-  let likeButton = document.getElementById('like_button')
-  likeButton.addEventListener("click", likeClicked)
+  // let likeButton = document.getElementById('like_button')
+  // likeButton.addEventListener("click", likeClicked)
+  //
+  // function likeClicked () {
+  //   //increase the number on the page currently
+  //   //THEN (optimistic) patch fetch for this image
+  //   let likeTag = document.getElementById('likes')
+  //   let newLikeCount = parseInt(likeTag.innerHTML, 10) + 1
+  //   likeTag.innerHTML = newLikeCount
+  // }
 
-  function likeClicked () {
-    //increase the number on the page currently
-    //THEN (optimistic) patch fetch for this image
-    let likeTag = document.getElementById('likes')
-    let newLikeCount = parseInt(likeTag.innerHTML, 10) + 1
-    likeTag.innerHTML = newLikeCount
+  const searchBar = document.querySelector('#search-bar')
+  const recommend = document.querySelector('#recommendations')
+  const search = document.querySelector('#search')
+
+
+
+
+  let input = ""
+  searchBar.addEventListener('keyup', (event) => {
+    input = searchBar.value
+    render()
+
+  })
+
+  function render() {
+    search.innerHTML = ""
+    start = allSongs.filter(media => {
+      return media.title.toLowerCase().startsWith(input.toLowerCase())
+    })
+
+    result = start.filter(media => {
+      return media.title.toLowerCase().includes(input.toLowerCase())
+    })
+
+    for (const media of result) {
+      if (input.length > 0) {
+        createDiv(media, search);
+
+      }
+
+    }
+  }
+
+  function createDiv(media, parent) {
+
+    let mDiv = document.createElement('div')
+    mDiv.className = 'card'
+
+    mDiv.append( document.createElement('p').innerHTML = media.title )
+    mDiv.append( document.createElement('p').innerHTML = `Source: ${media.filesource}` )
+
+    addButton = document.createElement('button')
+    addButton.innerText = '+'
+    addButton.className = 'rButton'
+    addButton.addEventListener('click', (event) => {
+      console.log('++');
+    })
+
+    playButton = document.createElement('button')
+    playButton.innerText = '►'
+    playButton.className = 'rButton'
+    playButton.addEventListener('click', (event) => {
+      Playlist.play(media)
+    })
+
+    mDiv.append(addButton, playButton)
+    parent.append(mDiv)
+  }
+
+  for (var i = 0; i < 5; i++) {
+    createDiv(allSongs[Math.floor(Math.random() * 5)], recommend)
   }
 
 })
 
 
 
-let videos1 = [
-  {source: "Media/pokemonr.mp3", type: "audio", name: "Pokemon R Battle Theme"},
-  {source: "Media/video.mp4", type: "video", name: "Developers Developers Developers"},
-  {source: "Media/pokemonx.mp3", type: "audio", name: "Pokemon X Battle Theme"},
-  {source: "Media/hd.mp4", type: "video", name: "Android Wireless Earbud"}
+
+let allSongs = [
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"},
+  {type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", likes: 3, filesource: "Media/video.mp4"},
+  {type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", likes: 1, filesource: "Media/hd.mp4"},
+  {type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", likes: 0, filesource: "Media/pokemonr.mp3"}
 ]
