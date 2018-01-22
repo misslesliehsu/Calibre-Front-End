@@ -4,7 +4,7 @@ class Playlist {
 
   }
 
-  static newStart(div, playlist) {
+  static start(div, playlist) {
     let video = div.children[0]
     let audio = div.children[1]
     let track = 0

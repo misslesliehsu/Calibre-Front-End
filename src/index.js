@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   //   document.querySelector('.browse-container').style.display = 'grid'
   // })
   //
-  // document.querySelector('#playlist')
-  // .addEventListener('click', (event) => {
-  //   div = document.querySelector('#video')
-  //   Playlist.newStart(div, videos1)
-  // })
+  document.querySelector('#playlist-button')
+  .addEventListener('click', (event) => {
+    div = document.querySelector('#player')
+    Playlist.start(div, videos1)
+  })
 
 
   // let likeButton = document.getElementById('like_button')
@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 })
+
 
 
 
