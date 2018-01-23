@@ -9,8 +9,5 @@ class App {
         store.media[current.id] = current
       })
     })
-
   }
-
-
 }

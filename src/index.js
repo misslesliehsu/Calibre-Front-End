@@ -1,4 +1,3 @@
-
 const store = {media: {}}
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#search-results')
   .addEventListener('click', event => {
     if (event.target.className === "playButton") {
-      Playlist.play(store.media[event.target.parentNode.id])
+      Playlist.play(store.media[event.target.parentNode.dataset.media_id])
     }
   })
 
