@@ -23,28 +23,28 @@ class Playlist {
       Playlist.play(playlist[track])
     })
   }
-  
-  static play(media) {
-    let video = document.querySelector('video')
-    let audio = document.querySelector('audio')
-    video.src = ""
-    audio.src = ""
 
-    switch (media.type) {
-      case "video":
-        audio.style.display = "none"
-        video.style.display = "inline"
-        video.width = video.parentNode.clientWidth
-        video.src = media.filesource
-        break;
-      case "audio":
-        video.style.display = "none"
-        audio.style.display = "inline"
-        audio.width = audio.parentNode.clientWidth
-        audio.src = media.filesource
-        break;
-    }
-  }
+  // static play(media) {
+  //   let video = document.querySelector('video')
+  //   let audio = document.querySelector('audio')
+  //   video.src = ""
+  //   audio.src = ""
+  //
+  //   switch (media.type) {
+  //     case "video":
+  //       audio.style.display = "none"
+  //       video.style.display = "inline"
+  //       video.width = video.parentNode.clientWidth
+  //       video.src = media.filesource
+  //       break;
+  //     case "audio":
+  //       video.style.display = "none"
+  //       audio.style.display = "inline"
+  //       audio.width = audio.parentNode.clientWidth
+  //       audio.src = media.filesource
+  //       break;
+  //   }
+  // }
 
   static populate(playlist) {
     recommend = document.querySelector('recommend')

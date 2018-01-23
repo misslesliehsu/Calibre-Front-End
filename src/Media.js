@@ -23,7 +23,6 @@ class Medium {
     likeTag.innerHTML = this.like_count
   }
 
-
   //note - songs will either come out as being in the Library, Playlist (mutually exclusive) and ALSO possibly Main
   templatePlaylistItem(){
     //will be similar as above, but to different parts of the HTML
@@ -48,10 +47,30 @@ class Medium {
     return playlistItem
   }
 
-
-
   renderAsLibraryItem(){
     //will be similar as above, but to different parts of the HTML
+  }
+
+   play() {
+    let video = document.querySelector('video')
+    let audio = document.querySelector('audio')
+    video.src = ""
+    audio.src = ""
+
+    switch (media.type) {
+      case "video":
+        audio.style.display = "none"
+        video.style.display = "inline"
+        video.width = video.parentNode.clientWidth
+        video.src = this.filesource
+        break;
+      case "audio":
+        video.style.display = "none"
+        audio.style.display = "inline"
+        audio.width = audio.parentNode.clientWidth
+        audio.src = this.filesource
+        break;
+    }
   }
 
   templateSearchItem() {

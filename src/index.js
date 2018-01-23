@@ -5,11 +5,7 @@
 // for the rest, load as library
 // fetch & load the comments of #1 on playlist
 
-
 document.addEventListener('DOMContentLoaded', () => {
-
-
-
 
   let likeButton = document.getElementById('like_button')
   likeButton.addEventListener("click", likeClicked)
@@ -21,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let newLikeCount = parseInt(likeTag.innerHTML, 10) + 1
     likeTag.innerHTML = newLikeCount
   }
-
 
 document.querySelector('#more-media')
     .addEventListener('click', event => {
@@ -52,17 +47,22 @@ document.querySelector('#more-media')
       .filter( media => {return media.title.toLowerCase().startsWith(input.toLowerCase())} )
   }
 
+  const loginButton = document.getElementById("login-form")
+  loginButton.addEventListener('submit', function(e){
+    let formInput = document.get.getElementById("username-input").value
+    if (formInput !== ""){
+      //find or create a new user
+      Adapter.getUsers
+      .then( (res) => {
+        
+        }
+      )
+    }
+
+  })
+
 })
 
-let allSongs = [
-  {id: 0, type: "video", title: "DEVELOPERS ", artist: "Microsoft guy", like_count: 3, filesource: "Media/video.mp4"},
-  {id: 1, type: "video", title: "Android Wireless Earbuds ", artist: "Tech guy", like_count: 1, filesource: "Media/hd.mp4"},
-  {id: 2, type: "audio", title: "Pokemon R Song ", artist: "Pokemon people", like_count: 0, filesource: "Media/pokemonr.mp3"},
-  {id: 3, type: "video", title: "Spongebob Wallet ", artist: "Cartoon people", like_count: 3, filesource: "Media/wallet.mp4"},
-  {id: 4, type: "audio", title: "Pokemon X Song ", artist: "Pokemon people", like_count: 1, filesource: "Media/pokemonx.mp3"},
-  {id: 5, type: "video", title: "Spogebob Texas ", artist: "Cartoon people", like_count: 0, filesource: "Media/texas.mp4"}
-]
-
-for (var i = 0; i < allSongs.length; i++) {
-  new Medium(allSongs[i])
-}
+//Used to act as a pseudo-database for videos.
+//Pull media data from database --> get ids, get filesources etc
+// Set IDs in your media.

@@ -2,18 +2,9 @@ const Adapter = (function(){
   const BASE_URL = `http://localhost:3000/api/v1/`
 
   return class Adapter {
+    // Playlist methods
     static getPlaylists(){
       return fetch(`${BASE_URL}playlists`)
-      .then(res => res.json())
-    }
-
-    static getComments(){
-      return fetch(`${BASE_URL}comments`)
-      .then(res => res.json())
-    }
-
-    static getMedia(){
-      fetch(`${BASE_URL}media`)
       .then(res => res.json())
     }
 
@@ -33,6 +24,17 @@ const Adapter = (function(){
       }).then(res => res.json())
     }
 
+    static deletePlaylist(id){
+      return fetch(`${BASE_URL}playlists/${id}`, {
+        method: 'delete'
+      }).then(res => res.json())
+    }
+
+    // Comment Methods
+    static getComments(){
+      return fetch(`${BASE_URL}comments`)
+      .then(res => res.json())
+    }
     static postComment(content, user_id, medium_id){
       return fetch(`${BASE_URL}comments/`, {
         method: 'post',
@@ -48,6 +50,28 @@ const Adapter = (function(){
         })
       }).then(res => res.json())
     }
+
+    //Media Methods
+    static getMedia(){
+      return fetch(`${BASE_URL}media`)
+      .then(res => res.json())
+    }
+
+    //User Methods
+    static findUser(username){
+      return fetch(`${BASE_URL}users/login`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            username: username
+          }
+        })
+      }).then(res => res.json())
+    }
+    
 
   }
 })()
