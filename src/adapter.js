@@ -13,7 +13,7 @@ const Adapter = (function(){
     }
 
     static getMedia(){
-      fetch(`${BASE_URL}media`)
+      return fetch(`${BASE_URL}media`)
       .then(res => res.json())
     }
 

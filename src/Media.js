@@ -1,7 +1,7 @@
 class Medium {
-  constructor({id, type, title, artist, likes, filesource}){
+  constructor( {id, kind, title, artist, likes, filesource} ){
     this.id = id
-    this.type = type
+    this.kind = kind
     this.title = title
     this.artist = artist
     this.like_count = likes
@@ -61,7 +61,7 @@ class Medium {
 
     mediaDiv.innerHTML = `
     <p>${this.title}</p>
-    <p>${this.file_src}</p>
+    <p>${this.artist}</p>
     <button class="addButton">+</button>
     <button class="playButton">►</button>
     `

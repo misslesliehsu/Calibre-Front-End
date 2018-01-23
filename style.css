@@ -188,7 +188,8 @@ ul {
   margin: 10px;
   box-sizing: border-box;
   border: 2px solid red;
-  width: 15%;
+  width: 30%;
+  vertical-align: top;
 }
 
 .rButton {
@@ -196,10 +197,19 @@ ul {
   border: 0px;
 }
 
+#search-results {
+  white-space:nowrap;
+  overflow:scroll;
+  overflow-y: hidden;
+  height: 100px;
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
 /* .rButton:focus {
   outline: none;
 } */
 
-audio {
+/* audio {
   width: 600px;
-}
+} */
