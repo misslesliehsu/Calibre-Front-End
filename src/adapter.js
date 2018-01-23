@@ -7,7 +7,7 @@ const Adapter = (function(){
       return fetch(`${BASE_URL}playlists`)
       .then(res => res.json())
     }
-
+    
     static postPlaylist(name, user_id, medium_id){
       return fetch(`${BASE_URL}playlists/`, {
         method: 'post',
