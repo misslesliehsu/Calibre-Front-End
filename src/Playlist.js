@@ -14,9 +14,10 @@ class Playlist {
   //this creates a bunch of div's inside a main div
     let playlistDivs = createElement('div')
     this.forEach( id => {
-    playlistDivs.appendChild(templatePlaylistItem(id)))
+    playlistDivs.appendChild(templatePlaylistItem(id))
     return playlistDivs
     //then, in index.js, can say playlistArea.appendChild(playlistDivs)
+    })
   }
 
   //BOTH below functions should be called to ADD AN ITEM to a playlist
@@ -111,5 +112,4 @@ class Playlist {
 
 
 
-}
 }

@@ -30,6 +30,7 @@ class Medium {
     let sorted = this.all.sort((a,b) => {b.like_count - a.like_count})
     recommendations = sorted.slice(0,4)
     let recBar = document.createElement('div')
+    recBar.className = "recBar"
     recommendations.forEach( rec => {
       let mediaDiv = document.createElement('div')
       mediaDiv.className = 'card'
@@ -43,6 +44,7 @@ class Medium {
       recBar.appendChild(mediaDiv)
     })
     return recBar
+    //now can say document.getElementById("recommendations").appendChild(Medium.templateRecommendation)
   }
 
 
