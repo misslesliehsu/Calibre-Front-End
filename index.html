@@ -11,12 +11,16 @@
 </head>
 
 <body>
+
+  <div id="login">
+    <form class="center-login" id="login-form">
+      <div class = "center-login" id="displayUsername"> Login </div>
+      <input type="text" name="username" placeholder="Username" id='username-input' value="">
+      <input type='submit' value="Login">
+    </form>
+  </div>
+
   <div class="grid">
-
-    <!-- <div id="header" class="header"></div> -->
-
-
-
     <div id="player" class="player">
       <!-- (not sure what player tag should be) -->
       <video controls autoplay height="auto" width="400" style="display:none;"></video>
@@ -67,6 +71,8 @@
   <script type="text/javascript" src="src/Comment.js"></script>
   <script type="text/javascript" src="src/User.js"></script>
   <script type="text/javascript" src="src/playlist.js"></script>
-  <script type="text/javascript" src="src/adapter.js"></script>
+  <script type="text/javascript" src="src/Media.js"></script>
+  <script type="text/javascript" src="src/Adapter.js"></script>
+  <script type="text/javascript" src="src/index.js"></script>
   </body>
 </html>

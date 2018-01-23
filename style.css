@@ -192,6 +192,12 @@ ul {
   vertical-align: top;
 }
 
+.center-login {
+  margin: auto;
+  width: 25%;
+  padding: 10px;
+}
+
 .rButton {
   width: 45%;
   border: 0px;
@@ -212,4 +218,15 @@ ul {
 
 /* audio {
   width: 600px;
-} */
+
+}
+
+.recBar {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
