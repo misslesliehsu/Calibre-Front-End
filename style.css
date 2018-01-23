@@ -212,15 +212,6 @@ ul {
   border: 1px solid red;
 }
 
-/* .rButton:focus {
-  outline: none;
-} */
-
-/* audio {
-  width: 600px;
-
-}
-
 .recBar {
   display: flex;
   width: 100%;
@@ -230,3 +221,13 @@ ul {
 
 }
 
+
+
+/* .rButton:focus {
+  outline: none;
+} */
+
+/* audio {
+  width: 600px;
+
+}

@@ -1,7 +1,8 @@
-const store = {media: {}}
+const store = {media: []}
 
 document.addEventListener('DOMContentLoaded', () => {
   App.init()
+
 
   let likeButton = document.getElementById('like_button')
   likeButton.addEventListener("click", likeClicked)
@@ -12,11 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
     likeTag.innerHTML = newLikeCount
   }
 
-  document.querySelector('#search-results')
+  document.querySelector('#more-media')
   .addEventListener('click', event => {
+    let parent_id = parseInt(event.target.parentNode.dataset.media_id)
+    let sel_item = store.media.find((x) => {return x.id === parent_id})
     if (event.target.className === "playButton") {
-      Playlist.play(store.media[event.target.parentNode.dataset.media_id])
+      Playlist.play(sel_item)
     }
+
+    else if (event.target.className === "addButton") {
+      //what needs to happen here:
+        //add id to the playlist array
+        //append to the playlist area
+        //IF there is a current user, fetch POST to add this playlist item
+    }
+
   })
 
 

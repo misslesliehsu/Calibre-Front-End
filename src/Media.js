@@ -1,4 +1,3 @@
-let allMedia = []
 
 class Medium {
   constructor( {id, kind, title, artist, likes, filesource} ){
@@ -8,10 +7,6 @@ class Medium {
     this.artist = artist
     this.like_count = likes
     this.file_src = filesource
-  }
-
-  static all() {
-    return allMedia
   }
 
   templateMain(){
@@ -32,17 +27,17 @@ class Medium {
   //RETURNS A FULL DIV OF RECOMMENDATIONS
   static templateRecommendation(){
     //how to make this sort pass through only?
-    let sorted = this.all.sort((a,b) => {b.like_count - a.like_count})
-    recommendations = sorted.slice(0,4)
+    let sorted = store.media.sort((a,b) => {b.like_count - a.like_count})
+    let recs = sorted.slice(0,4)
     let recBar = document.createElement('div')
     recBar.className = "recBar"
-    recommendations.forEach( rec => {
+    recs.forEach( rec => {
       let mediaDiv = document.createElement('div')
       mediaDiv.className = 'card'
       mediaDiv.dataset.media_id = rec.id
       mediaDiv.innerHTML = `
-      <p>${this.title}</p>
-      <p>${this.file_src}</p>
+      <p>${rec.title}</p>
+      <p>${rec.file_src}</p>
       <button class="addButton">+</button>
       <button class="playButton">►</button>
       `
