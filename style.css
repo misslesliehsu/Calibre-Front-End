@@ -191,6 +191,12 @@ ul {
   width: 15%;
 }
 
+.center-login {
+  margin: auto;
+  width: 25%;
+  padding: 10px;
+}
+
 .rButton {
   width: 45%;
   border: 0px;

@@ -29,7 +29,6 @@ class Medium {
     likeTag.innerHTML = this.like_count
   }
 
-
   //RETURNS A FULL DIV OF RECOMMENDATIONS
   static templateRecommendation(){
     //how to make this sort pass through only?
@@ -51,6 +50,33 @@ class Medium {
     })
     return recBar
     //now in index can say document.getElementById("recommendations").appendChild(Medium.templateRecommendation)
+  }
+
+
+  renderAsLibraryItem(){
+    //will be similar as above, but to different parts of the HTML
+  }
+
+   play() {
+    let video = document.querySelector('video')
+    let audio = document.querySelector('audio')
+    video.src = ""
+    audio.src = ""
+
+    switch (media.type) {
+      case "video":
+        audio.style.display = "none"
+        video.style.display = "inline"
+        video.width = video.parentNode.clientWidth
+        video.src = this.filesource
+        break;
+      case "audio":
+        video.style.display = "none"
+        audio.style.display = "inline"
+        audio.width = audio.parentNode.clientWidth
+        audio.src = this.filesource
+        break;
+    }
   }
 
 
