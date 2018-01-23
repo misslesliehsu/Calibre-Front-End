@@ -30,7 +30,7 @@ class Playlist {
 
   //RETURNS AN INDIVIDUAL PLAYLIST DIV
   templatePlaylistItem (id) {
-    let mediaItem = Media.all.find((x) => x.id === id)
+    let mediaItem = Medium.all.find((x) => x.id === id)
 
     let playlistItem = document.createElement('div')
     playlistItem.dataset.media_id = mediaItem.id

@@ -1,3 +1,5 @@
+let allMedia = []
+
 class Medium {
   constructor({id, type, title, artist, likes, filesource}){
     this.id = id
@@ -6,6 +8,10 @@ class Medium {
     this.artist = artist
     this.like_count = likes
     this.file_src = filesource
+  }
+
+  static all() {
+    return allMedia
   }
 
   templateMain(){
@@ -44,7 +50,7 @@ class Medium {
       recBar.appendChild(mediaDiv)
     })
     return recBar
-    //now can say document.getElementById("recommendations").appendChild(Medium.templateRecommendation)
+    //now in index can say document.getElementById("recommendations").appendChild(Medium.templateRecommendation)
   }
 
 
