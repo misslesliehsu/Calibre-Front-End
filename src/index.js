@@ -47,19 +47,23 @@ document.querySelector('#more-media')
       .filter( media => {return media.title.toLowerCase().startsWith(input.toLowerCase())} )
   }
 
+  //handle login event
   const loginButton = document.getElementById("login-form")
-  loginButton.addEventListener('submit', function(e){
-    let formInput = document.get.getElementById("username-input").value
+  loginButton.addEventListener('submit', userLogin)
+
+  function userLogin(e){
+    e.preventDefault()
+    let formInput = document.getElementById("username-input").value
     if (formInput !== ""){
       //find or create a new user
-      Adapter.getUsers
-      .then( (res) => {
-        
-        }
-      )
+      let userInput = document.getElementById('username-input').value
+      Adapter.findOrCreateUser(userInput).then( () => {
+        // Add username to the dom.
+        document.getElementById('displayUsername').innerText = `Welcome ${userInput}`
+        User.setCurrentUser(userInput) // sets 'current user'
+      })
     }
-
-  })
+  }
 
 })
 
