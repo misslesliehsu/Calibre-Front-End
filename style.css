@@ -209,3 +209,12 @@ ul {
 audio {
   width: 600px;
 }
+
+.recBar {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+
+}

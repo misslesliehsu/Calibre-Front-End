@@ -1,3 +1,5 @@
+let allMedia = []
+
 class Medium {
   constructor({id, type, title, artist, likes, filesource}){
     this.id = id
@@ -6,6 +8,10 @@ class Medium {
     this.artist = artist
     this.like_count = likes
     this.file_src = filesource
+  }
+
+  static all() {
+    return allMedia
   }
 
   templateMain(){
@@ -23,29 +29,29 @@ class Medium {
     likeTag.innerHTML = this.like_count
   }
 
-  //note - songs will either come out as being in the Library, Playlist (mutually exclusive) and ALSO possibly Main
-  templatePlaylistItem(){
-    //will be similar as above, but to different parts of the HTML
-    //should have button to remove from playlist
-    //also buttons to move up & down
-
-    let playlistArea = document.getElementById('playlist')
-    let playlistItem = document.createElement('div')
-    playlistItem.id = this.id
-    playlistItem.innerHTML = `
-      <div class='playlist-main'>
-        test text
-        ${this.title} + "by " + ${this.artist}
-        <button class="playlistPlayNow">Play Now</button>
-        <button class="playlistRemove">X</button>
-      </div>
-      <div class="playlist-order">
-        <i class="fa fa-angle-double-up" style="font-size:24px;color:gray"></i>
-        <i class="fa fa-angle-double-down" style="font-size:24px;color:gray"></i>
-      </div>
+  //RETURNS A FULL DIV OF RECOMMENDATIONS
+  static templateRecommendation(){
+    //how to make this sort pass through only?
+    let sorted = this.all.sort((a,b) => {b.like_count - a.like_count})
+    recommendations = sorted.slice(0,4)
+    let recBar = document.createElement('div')
+    recBar.className = "recBar"
+    recommendations.forEach( rec => {
+      let mediaDiv = document.createElement('div')
+      mediaDiv.className = 'card'
+      mediaDiv.dataset.media_id = rec.id
+      mediaDiv.innerHTML = `
+      <p>${this.title}</p>
+      <p>${this.file_src}</p>
+      <button class="addButton">+</button>
+      <button class="playButton">►</button>
       `
-    return playlistItem
+      recBar.appendChild(mediaDiv)
+    })
+    return recBar
+    //now in index can say document.getElementById("recommendations").appendChild(Medium.templateRecommendation)
   }
+
 
   renderAsLibraryItem(){
     //will be similar as above, but to different parts of the HTML
@@ -73,10 +79,11 @@ class Medium {
     }
   }
 
+
   templateSearchItem() {
     let mediaDiv = document.createElement('div')
     mediaDiv.className = 'card'
-    mediaDiv.id = this.id
+    mediaDiv.dataset.media_id = this.id
 
     mediaDiv.innerHTML = `
     <p>${this.title}</p>
