@@ -58,7 +58,7 @@ const Adapter = (function(){
     }
 
     //User Methods
-    static findUser(username){
+    static findOrCreateUser(username){
       return fetch(`${BASE_URL}users/login`, {
         method: 'post',
         headers: {
@@ -66,12 +66,13 @@ const Adapter = (function(){
         },
         body: JSON.stringify({
           user: {
-            username: username
+            username: username,
+            theme: 'default'
           }
         })
       }).then(res => res.json())
     }
-    
+
 
   }
 })()
