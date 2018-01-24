@@ -17,6 +17,7 @@ class App {
   //Add event listeners
     App.handleSearchBar();
     App.handleMediaClick();
+    App.handleClicks()
     App.handleLikeButton();
     App.handleLogin();
     App.handleNewSearch()
@@ -75,6 +76,38 @@ class App {
         //IF there is a current user, fetch POST to add this playlist item
         if (currentUser) {
           Adapter.postPlaylist("noname", currentUser.id, parent_id)
+        }
+      }
+    })
+  }
+
+  static handleClicks() {
+    document.addEventListener('click', event => {
+      let targetClass = event.target.className
+      let targetParentId = parseInt(event.target.parentNode.parentNode.dataset.media_id)
+      let targetIndex = App.playlist.media_ids.indexOf(targetParentId)
+
+      if (targetClass === "fa fa-angle-double-up") {
+        if (targetIndex !== 0) {
+          let prev = App.playlist.media_ids[targetIndex-1]
+          let prevDiv = document.querySelector(`div[data-media_id="${prev}"]`)
+
+          App.playlist.media_ids[targetIndex] = prev
+          App.playlist.media_ids[targetIndex-1] = targetParentId
+
+          document.querySelector(`div[data-media_id="${targetParentId}"]`).remove()
+          App.playlistArea.insertBefore(Playlist.templatePlaylistItem(targetParentId), prevDiv)
+        }
+      } else if (targetClass === "fa fa-angle-double-down") {
+        if (targetIndex !== App.playlist.media_ids.length-1) {
+          let next = App.playlist.media_ids[targetIndex+1]
+          let nextDiv = document.querySelector(`div[data-media_id="${next}"]`)
+
+          App.playlist.media_ids[targetIndex] = next
+          App.playlist.media_ids[targetIndex+1] = targetParentId
+
+          document.querySelector(`div[data-media_id="${targetParentId}"]`).remove()
+          App.playlistArea.insertBefore(Playlist.templatePlaylistItem(targetParentId), nextDiv.nextSibling)
         }
       }
     })
@@ -140,7 +173,7 @@ class App {
 
     //6
     let array = []
-    while (array.length < 5) {
+    while (array.length < store.media.length-1) {
       let media = store.media[Math.floor(Math.random() * store.media.length)]
       if (!array.includes(media)) {
         array.push(media)

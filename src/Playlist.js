@@ -35,7 +35,6 @@ class Playlist {
     playlistItem.dataset.media_id = mediaItem.id
     playlistItem.innerHTML = `
       <div class='playlist-main' data-media_id="${id}">
-        test text
         ${mediaItem.title} + "by " + ${mediaItem.artist}
         <button class="playButton">Play Now</button>
         <button class="playlistRemove">X</button>
