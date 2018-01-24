@@ -19,7 +19,8 @@ class App {
     App.handleMediaClick();
     App.handleLikeButton();
     App.handleLogin();
-    App.handleNewSearch()
+    App.handleNewSearch();
+    App.handleCommentSubmit();
 
 
   //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
@@ -85,7 +86,6 @@ class App {
 
     function likeClicked () {
       App.likes.innerHTML = parseInt(App.likes.innerHTML, 10) + 1
-      debugger
       let currentMedia = document.querySelector('#player').getAttribute('media-id')
       Adapter.putLikes(currentMedia,parseInt(App.likes.innerHTML))
     }
@@ -155,6 +155,28 @@ class App {
     App.browse.style.display = 'none'
     App.grid.style.display = 'grid'
   }
+
+  static handleCommentSubmit(){
+    let commentForm = document.getElementById('commentInput')
+    commentForm.addEventListener('submit', commentSubmit)
+
+    function commentSubmit(e){
+      e.preventDefault()
+      let commentInput = document.getElementById('commentSubmit')
+      let currentMediaId = document.getElementById('player').getAttribute('media-id')
+      if (commentInput.value !== ''){
+        // post a new comment
+        Adapter.postComment(commentInput.value, User.getCurrentUser().id, parseInt(currentMediaId)).then( (res) =>{
+          let newComment = new Comment(res)
+          let commentsDiv = document.getElementById('comments')
+          commentsDiv.append(newComment.templateComment())
+        })
+      }
+      //reset value
+      commentInput.value = ''
+    }
+  }
+
 
 
 }

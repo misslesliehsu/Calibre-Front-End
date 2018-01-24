@@ -78,8 +78,23 @@ class Medium {
         //show likes
         let likes = document.getElementById('likes')
         likes.innerText = res.likes
-    })
-    // add comments
+        // show comments
+      })
+
+      Adapter.getMediaComments(this.id)
+      .then(res => {
+        let commentsArea = document.getElementById('comments')
+        for (let item in commentsArea.children){
+          //remove existing comments
+          if (commentsArea.children[item].className === 'media-comment'){
+            commentsArea.children[item].remove()
+          }
+        }
+        for (let com in res){
+          let comment = new Comment(res[com])
+          commentsArea.append(comment.templateComment())
+        }
+      })
   }
 
   templateSearchItem() {
