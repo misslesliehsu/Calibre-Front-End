@@ -141,7 +141,7 @@ class App {
     //6
     let array = []
     while (array.length < 5) {
-      media = store.media[Math.floor(Math.random() * store.media.length)]
+      let media = store.media[Math.floor(Math.random() * store.media.length)]
       if (!array.includes(media)) {
         array.push(media)
         document.querySelector('.browse').append(media.templateSearchItem())
