@@ -80,6 +80,9 @@ class App {
 
     function likeClicked () {
       App.likes.innerHTML = parseInt(App.likes.innerHTML, 10) + 1
+      debugger
+      let currentMedia = document.querySelector('#player').getAttribute('media-id')
+      Adapter.putLikes(currentMedia,parseInt(App.likes.innerHTML))
     }
   }
 

@@ -75,30 +75,6 @@ class Playlist {
     })
   }
 
-
-  static play(media) {
-    let video = document.querySelector('video')
-    let audio = document.querySelector('audio')
-    video.src = ""
-    audio.src = ""
-
-    switch (media.kind) {
-      case "video":
-        audio.style.display = "none"
-        video.style.display = "inline"
-        video.width = video.parentNode.clientWidth
-        video.src = media.file_src
-        break;
-      case "audio":
-        video.style.display = "none"
-        audio.style.display = "inline"
-        audio.style.width = audio.parentNode.clientWidth
-        audio.src = media.file_src
-        break;
-    }
-  }
-
-
   static populate(playlist) {
     recommend = document.querySelector('recommend')
     playlist.forEach(media => {

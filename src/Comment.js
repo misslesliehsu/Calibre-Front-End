@@ -14,18 +14,5 @@ class Comment {
     deleteButton.innerHTML = 'delete'
     commentLi.appendChild(deleteButton)
     return commentLi
-
-    // commentsArea.appendChild(commentLi)
-
-    // deleteButton.addEventListener("click", ()=> {
-    //   commentLi.remove()
-    //   // fetch(`URL${this.id}`, {
-    //   //         method: 'DELETE',
-    //   //         headers: {
-    //   //              'Content-Type': 'application/json',
-    //   //              'Accept': 'application/json'
-    //   //          }
-    //   //        })
-    // })
   }
 }
