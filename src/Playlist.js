@@ -29,7 +29,7 @@ class Playlist {
   }
 
   //RETURNS AN INDIVIDUAL PLAYLIST DIV
-  templatePlaylistItem (id) {
+  static templatePlaylistItem (id) {
     let mediaItem = store.media.find((x) => x.id === id)
     let playlistItem = document.createElement('div')
     playlistItem.dataset.media_id = mediaItem.id

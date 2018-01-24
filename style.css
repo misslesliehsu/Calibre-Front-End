@@ -207,7 +207,7 @@ ul {
   white-space:nowrap;
   overflow:scroll;
   overflow-y: hidden;
-  height: 100px;
+  height: 500px;
   box-sizing: border-box;
   border: 1px solid red;
 }
@@ -220,6 +220,7 @@ ul {
   justify-content: space-between;
 
 }
+
 
 
 
