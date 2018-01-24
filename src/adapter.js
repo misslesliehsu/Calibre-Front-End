@@ -82,6 +82,25 @@ const Adapter = (function(){
       }).then(res => res.json())
     }
 
+    static putLikes(id, likes){
+      // get current likes
+      return fetch(`${BASE_URL}media/${id}`,{
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          medium: {
+            likes: likes
+          }
+        })
+      }).then(res => res.json())
+    }
+    //may not need the below
+    static getMedium(id){
+      return fetch(`${BASE_URL}media/${id}`)
+      .then(res => res.json())
+    }
 
   }
 })()
