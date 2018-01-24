@@ -35,6 +35,7 @@ const Adapter = (function(){
       return fetch(`${BASE_URL}comments`)
       .then(res => res.json())
     }
+
     static postComment(content, user_id, medium_id){
       return fetch(`${BASE_URL}comments/`, {
         method: 'post',

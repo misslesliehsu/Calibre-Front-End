@@ -49,7 +49,7 @@ class App {
       let parent_id = parseInt(event.target.parentNode.dataset.media_id)
       let sel_item = store.media.find(x => {return x.id === parent_id})
       if (event.target.className === "playButton") {
-        Playlist.play(sel_item)
+        sel_item.play()
       } else if (event.target.className === "addButton") {
         //what needs to happen here:
           //add id to the playlist array
@@ -64,6 +64,9 @@ class App {
 
     function likeClicked () {
       App.likes.innerHTML = parseInt(App.likes.innerHTML, 10) + 1
+      debugger
+      let currentMedia = document.querySelector('#player').getAttribute('media-id')
+      Adapter.putLikes(currentMedia,parseInt(App.likes.innerHTML))
     }
   }
 

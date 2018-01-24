@@ -47,7 +47,6 @@ class Medium {
     //now in index can say document.getElementById("recommendations").appendChild(Medium.templateRecommendation)
   }
 
-
   renderAsLibraryItem(){
     //will be similar as above, but to different parts of the HTML
   }
@@ -55,25 +54,33 @@ class Medium {
    play() {
     let video = document.querySelector('video')
     let audio = document.querySelector('audio')
+    let player = document.getElementById('player')
+    player.setAttribute("media-id", this.id)
     video.src = ""
     audio.src = ""
 
-    switch (media.type) {
+    switch (this.kind) {
       case "video":
         audio.style.display = "none"
         video.style.display = "inline"
         video.width = video.parentNode.clientWidth
-        video.src = this.filesource
+        video.src = this.file_src
         break;
       case "audio":
         video.style.display = "none"
         audio.style.display = "inline"
         audio.width = audio.parentNode.clientWidth
-        audio.src = this.filesource
+        audio.src = this.file_src
         break;
     }
+      Adapter.getMedium(this.id)
+      .then( res => {
+        //show likes
+        let likes = document.getElementById('likes')
+        likes.innerText = res.likes
+    })
+    // add comments
   }
-
 
   templateSearchItem() {
     let mediaDiv = document.createElement('div')
