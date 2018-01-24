@@ -1,4 +1,4 @@
-let currentUser;
+let currentUser = null;
 class User {
     constructor({id, username, theme}) {
       this.id = id

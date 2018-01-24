@@ -2,6 +2,7 @@ class Playlist {
 
   constructor(media_ids) {
     this.media_ids = media_ids
+    this.running = false
   }
 
 //with above, a new Playlist is instantiated as just an array of media_ids, referring to a subset of media items that should all be instantiated themselves
@@ -53,24 +54,28 @@ class Playlist {
     this.media_ids.splice( this.indexOf(id), 1 );
   }
 
+//for playing playlist items (autoplay)
+  start(starting_media_id) {
+    Medium.play(starting_media_id)
 
-  static start(div, playlist) {
-    let video = div.children[0]
-    let audio = div.children[1]
-    let track = 0
+    //get the playlist index the of the starting song
+    let track_index = App.playlist.media_ids.indexOf(starting_media_id)
 
-    Playlist.play(playlist[track])
-
-    audio.addEventListener('ended', (event) => {
-      if (track+1 === playlist.length) return null
-      track++
-      Playlist.play(playlist[track])
+    App.audio.addEventListener('ended', (event) => {
+      if (App.playlist.running === true) {
+        if (track_index+1 === App.playlist.length) return null
+        track_index++
+        Medium.play(App.playlist.media_ids[track_index])
+      }
     })
 
-    video.addEventListener('ended', (event) => {
-      if (track+1 === playlist.length) return null
-      track++
-      Playlist.play(playlist[track])
+    App.video.addEventListener('ended', (event) => {
+      if (App.playlist.running === true) {
+        if (track_index+1 === playlist.length) return null
+        track_index++
+        console.log("about to play the next song")
+        Medium.play(App.playlist.media_ids[track_index])
+      }
     })
   }
 

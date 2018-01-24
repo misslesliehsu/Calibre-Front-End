@@ -3,6 +3,8 @@ class App {
   //capture important HTML elements, as App attributes
     App.getElements()
 
+  //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
+    App.playlist = new Playlist([])
 
   //Fetch all media; instantiate each and to store
   //then load all recommendations to recBar
@@ -20,16 +22,20 @@ class App {
     App.handleClicks()
     App.handleLikeButton();
     App.handleLogin();
+    App.handleCommentSubmit();
     App.handleNewSearch()
+
     App.handleRepeat()
 
+    App.handleAutoPlay()
+    
 
-  //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
-    App.playlist = new Playlist([])
   }
 
   static getElements() {
 
+    App.video = document.querySelector('#player video')
+    App.audio = document.querySelector('#player audio')
     App.grid = document.querySelector('.grid')
     App.browse = document.querySelector('.browse')
     App.playlistArea = document.querySelector('#playlist')
@@ -45,6 +51,26 @@ class App {
     // App.loginInput = document.getElementById("username-input").value
     const recommendations = document.querySelector('#recommendations')
   }
+
+  static handleAutoPlay() {
+    App.audio.addEventListener('ended', (event) => {
+      if (App.playlist.running === true) {
+        if (track_index+1 === App.playlist.length) return null
+        track_index++
+        Medium.play(App.playlist.media_ids[track_index])
+      }
+    })
+
+    App.video.addEventListener('ended', (event) => {
+      if (App.playlist.running === true) {
+        if (track_index+1 === playlist.length) return null
+        track_index++
+        console.log("about to play the next song")
+        Medium.play(App.playlist.media_ids[track_index])
+      }
+    })
+  }
+
 
   static handleSearchBar(){
     App.searchBar.addEventListener('keyup', event => {
@@ -64,26 +90,39 @@ class App {
   static handleMediaClick(){
     document.addEventListener('click', event => {
       //lookup the media object that was clicked on
-      let parent_id = parseInt(event.target.parentNode.dataset.media_id)
-      let sel_item = store.media.find(x => {return x.id === parent_id})
+      let clicked_id = parseInt(event.target.parentNode.dataset.media_id)
 
       //handle click on "play"
       if (event.target.className === "playButton") {
-        sel_item.play()
+        //if this is a playlist item....
+        if (event.target.parentElement.parentElement.parentElement.id === "playlist") {
+          App.playlist.running = true
+          App.playlist.start(clicked_id)
+          console.log(App.playlist.running)
+          debugger
+        }
+        //if this is a non-playlist item (e.g. from library or recs)
+        else {
+          App.playlist.running = false
+          Medium.play(clicked_id)
+        }
+
       }
+
       //handle click on "add to playlist"
       else if (event.target.className === "addButton") {
         //add id to the playlist array
-        App.playlist.addItem(parent_id)
+        App.playlist.addItem(clicked_id)
         //append to the playlist area
-        App.playlistArea.append(Playlist.templatePlaylistItem(parent_id))
+        App.playlistArea.append(Playlist.templatePlaylistItem(clicked_id))
         //IF there is a current user, fetch POST to add this playlist item
         if (currentUser) {
-          Adapter.postPlaylist("noname", currentUser.id, parent_id)
+          Adapter.postPlaylist("noname", currentUser.id, clicked_id)
         }
       }
     })
   }
+
 
   static handleClicks() {
     document.addEventListener('click', event => {
@@ -117,12 +156,12 @@ class App {
     })
   }
 
+
   static handleLikeButton(){
     App.likeButton.addEventListener("click", likeClicked)
 
     function likeClicked () {
       App.likes.innerHTML = parseInt(App.likes.innerHTML, 10) + 1
-      debugger
       let currentMedia = document.querySelector('#player').getAttribute('media-id')
       Adapter.putLikes(currentMedia,parseInt(App.likes.innerHTML))
     }
@@ -193,6 +232,7 @@ class App {
     App.grid.style.display = 'grid'
   }
 
+
   static handleRepeat(){
     App.repeatButton.addEventListener('click', e => {
       App.audio.loop = !App.audio.loop
@@ -205,6 +245,33 @@ class App {
       }
     })
   }
+
+
+  static handleCommentSubmit(){
+    let commentForm = document.getElementById('commentInput')
+    commentForm.addEventListener('submit', commentSubmit)
+
+    function commentSubmit(e){
+      e.preventDefault()
+      if (User.getCurrentUser() !== null) {
+        let commentInput = document.getElementById('commentSubmit')
+        let currentMediaId = document.getElementById('player').getAttribute('media-id')
+        if (commentInput.value !== ''){
+          // post a new comment
+          Adapter.postComment(commentInput.value, User.getCurrentUser().id, parseInt(currentMediaId)).then( (res) =>{
+            let newComment = new Comment(res)
+            let commentsDiv = document.getElementById('comments')
+            commentsDiv.append(newComment.templateComment())
+          })
+        }
+      } else {
+        alert('Cannot add comment without login.')
+      }
+      //reset value
+      commentInput.value = ''
+    }
+  }
+
 
 
 }
