@@ -21,6 +21,7 @@ class App {
     App.handleLikeButton();
     App.handleLogin();
     App.handleNewSearch()
+    App.handleRepeat()
 
 
   //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
@@ -38,6 +39,9 @@ class App {
     App.likeButton = document.getElementById('like_button')
     App.likes = document.getElementById('likes')
     App.loginForm = document.getElementById("login-form")
+    App.repeatButton = document.getElementById("repeat")
+    App.video = document.querySelector('video')
+    App.audio = document.querySelector('audio')
     // App.loginInput = document.getElementById("username-input").value
     const recommendations = document.querySelector('#recommendations')
   }
@@ -187,6 +191,19 @@ class App {
   static renderGrid() {
     App.browse.style.display = 'none'
     App.grid.style.display = 'grid'
+  }
+
+  static handleRepeat(){
+    App.repeatButton.addEventListener('click', e => {
+      App.audio.loop = !App.audio.loop
+      App.video.loop = !App.video.loop
+
+      if (App.audio.loop) {
+        App.repeatButton.innerHTML = "Remove Repeat"
+      } else {
+        App.repeatButton.innerHTML = "Repeat?"
+      }
+    })
   }
 
 
