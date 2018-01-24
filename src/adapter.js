@@ -35,6 +35,7 @@ const Adapter = (function(){
       return fetch(`${BASE_URL}comments`)
       .then(res => res.json())
     }
+
     static postComment(content, user_id, medium_id){
       return fetch(`${BASE_URL}comments/`, {
         method: 'post',
@@ -82,6 +83,25 @@ const Adapter = (function(){
       }).then(res => res.json())
     }
 
+    static putLikes(id, likes){
+      // get current likes
+      return fetch(`${BASE_URL}media/${id}`,{
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          medium: {
+            likes: likes
+          }
+        })
+      }).then(res => res.json())
+    }
+    //may not need the below
+    static getMedium(id){
+      return fetch(`${BASE_URL}media/${id}`)
+      .then(res => res.json())
+    }
 
   }
 })()
