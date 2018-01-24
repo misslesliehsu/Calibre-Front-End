@@ -162,15 +162,19 @@ class App {
 
     function commentSubmit(e){
       e.preventDefault()
-      let commentInput = document.getElementById('commentSubmit')
-      let currentMediaId = document.getElementById('player').getAttribute('media-id')
-      if (commentInput.value !== ''){
-        // post a new comment
-        Adapter.postComment(commentInput.value, User.getCurrentUser().id, parseInt(currentMediaId)).then( (res) =>{
-          let newComment = new Comment(res)
-          let commentsDiv = document.getElementById('comments')
-          commentsDiv.append(newComment.templateComment())
-        })
+      if (User.getCurrentUser() !== null) {
+        let commentInput = document.getElementById('commentSubmit')
+        let currentMediaId = document.getElementById('player').getAttribute('media-id')
+        if (commentInput.value !== ''){
+          // post a new comment
+          Adapter.postComment(commentInput.value, User.getCurrentUser().id, parseInt(currentMediaId)).then( (res) =>{
+            let newComment = new Comment(res)
+            let commentsDiv = document.getElementById('comments')
+            commentsDiv.append(newComment.templateComment())
+          })
+        }
+      } else {
+        alert('Cannot add comment without login.')
       }
       //reset value
       commentInput.value = ''
