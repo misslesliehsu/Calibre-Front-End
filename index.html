@@ -44,11 +44,16 @@
 
 
     <div id="comments" class="comments">
+      <span>Likes:
+        <span id="likes">0</span>
+      </span>
+      <button id="like_button">Like</button>
+
       <h3>Comments:</h3>
-        <span>Likes:
-          <span id="likes">0</span>
-        </span>
-        <button id="like_button">Like</button>
+      <form id='commentInput'>
+        <input type='text' name='content' placeholder = 'Enter a comment...' id='commentSubmit' >
+        <input type='submit' value='Submit'>
+      </form>
         <li>this is a fake comment</li>
     </div>
 

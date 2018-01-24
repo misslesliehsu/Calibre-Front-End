@@ -36,6 +36,11 @@ const Adapter = (function(){
       .then(res => res.json())
     }
 
+    static getMediaComments(id){
+      return fetch(`${BASE_URL}media/${id}/comments`)
+      .then(res => res.json())
+    }
+
     static postComment(content, user_id, medium_id){
       return fetch(`${BASE_URL}comments/`, {
         method: 'post',
@@ -102,6 +107,7 @@ const Adapter = (function(){
       return fetch(`${BASE_URL}media/${id}`)
       .then(res => res.json())
     }
+
 
   }
 })()
