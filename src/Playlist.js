@@ -34,10 +34,10 @@ class Playlist {
     let playlistItem = document.createElement('div')
     playlistItem.dataset.media_id = mediaItem.id
     playlistItem.innerHTML = `
-      <div class='playlist-main'>
+      <div class='playlist-main' data-media_id="${id}">
         test text
         ${mediaItem.title} + "by " + ${mediaItem.artist}
-        <button class="playlistPlayNow">Play Now</button>
+        <button class="playButton">Play Now</button>
         <button class="playlistRemove">X</button>
       </div>
       <div class="playlist-order">

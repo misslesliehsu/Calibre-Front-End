@@ -1,7 +1,11 @@
 class App {
   static init() {
+  //capture important HTML elements, as App attributes
     App.getElements()
 
+
+  //Fetch all media; instantiate each and to store
+  //then load all recommendations to recBar
     Adapter.getMedia().then(data => {
       data.forEach(media => {
         let current = new Medium(media)
@@ -10,15 +14,18 @@ class App {
     }).then(() => {
       recommendations.appendChild(Medium.templateRecommendation())
     })
-
+  //Add event listeners
     App.handleSearchBar();
     App.handleMediaClick();
     App.handleLikeButton();
     App.handleLogin();
 
+  //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
+    App.playlist = new Playlist([])
   }
 
   static getElements() {
+    App.playlistArea = document.querySelector('#playlist')
     App.searchBar = document.querySelector('#search-bar')
     App.searchResult = document.querySelector('#search-results')
     App.moreMedia = document.querySelector('#more-media')
@@ -45,16 +52,25 @@ class App {
   } // static handle
 
   static handleMediaClick(){
-    App.moreMedia.addEventListener('click', event => {
+    document.addEventListener('click', event => {
+      //lookup the media object that was clicked on
       let parent_id = parseInt(event.target.parentNode.dataset.media_id)
       let sel_item = store.media.find(x => {return x.id === parent_id})
+
+      //handle click on "play"
       if (event.target.className === "playButton") {
-        Playlist.play(sel_item)
-      } else if (event.target.className === "addButton") {
-        //what needs to happen here:
-          //add id to the playlist array
-          //append to the playlist area
-          //IF there is a current user, fetch POST to add this playlist item
+        sel_item.play()
+      }
+      //handle click on "add to playlist"
+      else if (event.target.className === "addButton") {
+        //add id to the playlist array
+        App.playlist.addItem(parent_id)
+        //append to the playlist area
+        App.playlistArea.append(Playlist.templatePlaylistItem(parent_id))
+        //IF there is a current user, fetch POST to add this playlist item
+        if (currentUser) {
+          Adapter.postPlaylist("noname", currentUser.id, parent_id)
+        }
       }
     })
   }
@@ -84,7 +100,8 @@ class App {
           Adapter.returnPlaylist(user.id)
           .then(data => {
             data.forEach(media => {
-              document.querySelector('#playlist').append(Playlist.templatePlaylistItem(media.id))
+              App.playlistArea.append(Playlist.templatePlaylistItem(media.id))
+              App.playlist.addItem(media.id)
             })
           })
 
