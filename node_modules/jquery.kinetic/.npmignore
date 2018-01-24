@@ -1,9 +1,0 @@
-
-.idea
-bower_components
-node_modules
-demos
-lib
-test
-Gruntfile.js
-bower.json
