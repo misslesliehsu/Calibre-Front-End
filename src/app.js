@@ -27,8 +27,6 @@ class App {
 
     App.handleRepeat()
 
-    App.handleAutoPlay()
-
 
   }
 
@@ -50,25 +48,6 @@ class App {
     App.audio = document.querySelector('audio')
     // App.loginInput = document.getElementById("username-input").value
     const recommendations = document.querySelector('#recommendations')
-  }
-
-  static handleAutoPlay() {
-    App.audio.addEventListener('ended', (event) => {
-      if (App.playlist.running === true) {
-        if (track_index+1 === App.playlist.length) return null
-        track_index++
-        Medium.play(App.playlist.media_ids[track_index])
-      }
-    })
-
-    App.video.addEventListener('ended', (event) => {
-      if (App.playlist.running === true) {
-        if (track_index+1 === playlist.length) return null
-        track_index++
-        console.log("about to play the next song")
-        Medium.play(App.playlist.media_ids[track_index])
-      }
-    })
   }
 
 
@@ -119,6 +98,14 @@ class App {
           Adapter.postPlaylist("noname", currentUser.id, clicked_id)
         }
       }
+
+      //handle click on "remove from playlist"
+      else if (event.target.className === "playlistRemove") {
+      App.playlist.removeItem(clicked_id)
+
+      }
+
+
     })
   }
 
