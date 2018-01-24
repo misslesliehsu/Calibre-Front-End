@@ -28,7 +28,7 @@ class App {
     App.handleRepeat()
 
     App.handleAutoPlay()
-    
+
 
   }
 
@@ -99,7 +99,6 @@ class App {
           App.playlist.running = true
           App.playlist.start(clicked_id)
           console.log(App.playlist.running)
-          debugger
         }
         //if this is a non-playlist item (e.g. from library or recs)
         else {
