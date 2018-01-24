@@ -19,12 +19,17 @@ class App {
     App.handleMediaClick();
     App.handleLikeButton();
     App.handleLogin();
+    App.handleNewSearch()
+
 
   //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
     App.playlist = new Playlist([])
   }
 
   static getElements() {
+
+    App.grid = document.querySelector('.grid')
+    App.browse = document.querySelector('.browse')
     App.playlistArea = document.querySelector('#playlist')
     App.searchBar = document.querySelector('#search-bar')
     App.searchResult = document.querySelector('#search-results')
@@ -107,13 +112,48 @@ class App {
               App.playlist.addItem(media.id)
             })
           })
-
         })
+      }
+    }
+  }
 
+  static handleNewSearch() {
+    document.querySelector('.form').addEventListener('submit', e => {
+      e.preventDefault()
+      App.renderBrowse();
+      document.querySelector('.browse').innerHTML = ""
+      let input = App.searchBar.value.toLowerCase();
 
+      if (input.length > 0) {
+        for (const media in store.media) {
+          if (store.media[media].title.toLowerCase().includes(input)) {
+            document.querySelector('.browse').append(store.media[media].templateSearchItem())
+          } // if store media
+        } // for const
+      } // if input
+    })
+  }
+
+  static renderBrowse() {
+    App.grid.style.display = 'none'
+    App.browse.innerHTML = ''
+
+    //6
+    let array = []
+    while (array.length < 5) {
+      media = store.media[Math.floor(Math.random() * store.media.length)]
+      if (!array.includes(media)) {
+        array.push(media)
+        document.querySelector('.browse').append(media.templateSearchItem())
       }
     }
 
+    App.browse.style.display = 'grid'
+  }
+
+  static renderGrid() {
+    App.browse.style.display = 'none'
+    App.grid.style.display = 'grid'
   }
 
 

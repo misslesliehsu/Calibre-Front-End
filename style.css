@@ -221,14 +221,7 @@ ul {
 
 }
 
-
-
-
-/* .rButton:focus {
-  outline: none;
-} */
-
-/* audio {
-  width: 600px;
-
+.browse {
+  box-sizing: border-box;
+  border: 1px solid red;
 }
