@@ -51,33 +51,33 @@ class Medium {
     //will be similar as above, but to different parts of the HTML
   }
 
-   play() {
-    let video = document.querySelector('video')
-    let audio = document.querySelector('audio')
-    let player = document.getElementById('player')
-    player.setAttribute("media-id", this.id)
-    video.src = ""
-    audio.src = ""
+  static play(item_id) {
 
-    switch (this.kind) {
+    let play_item = store.media.find(x => {return x.id === item_id})
+
+    let player = document.getElementById('player')
+    player.setAttribute("media-id", item_id)
+    App.video.src = ""
+    App.audio.src = ""
+
+    switch (play_item.kind) {
       case "video":
-        audio.style.display = "none"
-        video.style.display = "inline"
-        video.width = video.parentNode.clientWidth
-        video.src = this.file_src
+        App.audio.style.display = "none"
+        App.video.style.display = "inline"
+        App.video.width = App.video.parentNode.clientWidth
+        App.video.src = play_item.file_src
         break;
       case "audio":
-        video.style.display = "none"
-        audio.style.display = "inline"
-        audio.width = audio.parentNode.clientWidth
-        audio.src = this.file_src
+        App.video.style.display = "none"
+        App.audio.style.display = "inline"
+        App.audio.width = App.audio.parentNode.clientWidth
+        App.audio.src = play_item.file_src
         break;
     }
-      Adapter.getMedium(this.id)
+      Adapter.getMedium(item_id)
       .then( res => {
         //show likes
-        let likes = document.getElementById('likes')
-        likes.innerText = res.likes
+        App.likes.innerText = res.likes
     })
     // add comments
   }
