@@ -221,7 +221,7 @@ ul {
 
 }
 
-.hello {
+.browse {
   box-sizing: border-box;
-  border: 2px solid blue;
+  border: 1px solid red;
 }
