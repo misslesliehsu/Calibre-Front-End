@@ -47,10 +47,6 @@ class Medium {
     //now in index can say document.getElementById("recommendations").appendChild(Medium.templateRecommendation)
   }
 
-  renderAsLibraryItem(){
-    //will be similar as above, but to different parts of the HTML
-  }
-
   static play(item_id) {
 
     let play_item = store.media.find(x => {return x.id === item_id})
@@ -77,7 +73,7 @@ class Medium {
       Adapter.getMedium(item_id)
       .then( res => {
         //show likes
-        
+
         App.likes.innerText = res.likes
         // show comments
       })
