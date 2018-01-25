@@ -72,11 +72,18 @@ class App {
 
       //handle click on "play"
       if (event.target.className === "playButton") {
+        // look for anything in the playlist area already highlighted
+        let curr_high = document.querySelector('div[data-highlight = "true"]')
+        if (curr_high){
+          curr_high.setAttribute("data-highlight", "false")
+        }
+
+
         //if this is a playlist item....
         if (event.target.parentElement.parentElement.parentElement.id === "playlist") {
           App.playlist.running = true
           App.playlist.start(clicked_id)
-          console.log(App.playlist.running)
+          event.target.parentElement.parentElement.dataset.highlight = "true"
         }
         //if this is a non-playlist item (e.g. from library or recs)
         else {
@@ -210,6 +217,9 @@ class App {
   static renderBrowse() {
     App.grid.style.display = 'none'
     App.browse.innerHTML = ''
+    App.video.src = ""
+    App.audio.src = ""
+
 
     //6
     let array = []
