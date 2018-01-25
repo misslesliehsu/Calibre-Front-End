@@ -2,7 +2,6 @@ class App {
   static init() {
   //capture important HTML elements, as App attributes
     App.getElements()
-
   //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
     App.playlist = new Playlist([])
 
@@ -14,7 +13,9 @@ class App {
         store.media.push(current)
       })
     }).then(() => {
-      recommendations.appendChild(Medium.templateRecommendation())
+      App.recommendations.appendChild(Medium.templateRecommendation())
+      App.renderBrowse()
+      App.renderGrid()
     })
   //Add event listeners
     App.handleSearchBar();
@@ -26,10 +27,13 @@ class App {
     App.handleCommentDelete();
     App.handleNewSearch()
     App.handleRepeat()
+    App.handlePlayer()
+    App.handleBrowse()
+    App.handlePrevButton()
+    App.handleNextButton()
   }
 
   static getElements() {
-
     App.video = document.querySelector('#player video')
     App.audio = document.querySelector('#player audio')
     App.grid = document.querySelector('.grid')
@@ -44,8 +48,12 @@ class App {
     App.repeatButton = document.getElementById("repeat")
     App.video = document.querySelector('video')
     App.audio = document.querySelector('audio')
-    // App.loginInput = document.getElementById("username-input").value
-    const recommendations = document.querySelector('#recommendations')
+    App.recommendations = document.querySelector('#recommendations')
+    App.prevButton = document.querySelector('#prev')
+    App.nextButton = document.querySelector('#next')
+    App.playerButton = document.querySelector('#playerButton')
+    App.browseButton = document.querySelector('#browseButton')
+
   }
 
 
@@ -69,13 +77,13 @@ class App {
       //lookup the media object that was clicked on
       let clicked_id = parseInt(event.target.parentNode.dataset.media_id)
 
+
       //handle click on "play"
       if (event.target.className === "playButton") {
         //if this is a playlist item....
         if (event.target.parentElement.parentElement.parentElement.id === "playlist") {
           App.playlist.running = true
           App.playlist.start(clicked_id)
-          console.log(App.playlist.running)
         }
         //if this is a non-playlist item (e.g. from library or recs)
         else {
@@ -96,9 +104,9 @@ class App {
           Adapter.postPlaylist("noname", currentUser.id, clicked_id).then(res=>{res.id})
         }
         //now, remove "add to playlist" button to all instances of the item (i.e. in recs or library)
+        App.recommendations.innerHTML = ''
+        App.recommendations.appendChild(Medium.templateRecommendation())
 
-        // document.querySelector('.card')
-        //find everything that has this as a data media id, and remove the button
 
 
       }
@@ -110,7 +118,11 @@ class App {
       //remove from the playlist area
       let for_removal = App.playlistArea.querySelector(`div[data-media_id = "${clicked_id}"`)
       for_removal.remove()
-      Adapter.deletePlaylist(currentUser.id, clicked_id)
+      if (currentUser) {Adapter.deletePlaylist(currentUser.id, clicked_id)}
+      }
+
+      else if (event.target.id === "prev") {
+
       }
 
 
@@ -180,6 +192,8 @@ class App {
             data.forEach(media => {
               App.playlistArea.append(Playlist.templatePlaylistItem(media.id))
               App.playlist.addItem(media.id)
+              App.recommendations.innerHTML = ''
+              App.recommendations.appendChild(Medium.templateRecommendation())
             })
           })
         })
@@ -278,13 +292,50 @@ class App {
         e.target.parentNode.remove()
         // remove comment
         Adapter.deleteComment(commentId)
+
       } else if(e.target.className ==='delete') {
         alert('You can only delete your own comments')
       }
         e.stopPropagation()
     }
+  }
+
+  static handlePlayer() {
+    App.playerButton.addEventListener('click', App.renderGrid)
+  }
+
+  static handleBrowse() {
+    App.browseButton.addEventListener('click', App.renderBrowse)
+  }
+
+  static handlePrevButton() {
+    App.prevButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      let parentId = parseInt(App.video.parentNode.getAttribute("media-id"))
+      let parentMedia = App.playlist.media_ids.indexOf(parentId)
+      let targetMedia = App.playlist.media_ids[parentMedia-1]
+      let targetButton = App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`)
 
 
+      if (targetButton === undefined) {
+        return null
+      } else {
+        App.playlist.start(targetMedia)
+      }
+
+    })
+  }
+
+  static handleNextButton() {
+    App.nextButton.addEventListener('click', () => {
+      let parentId = parseInt(App.video.parentNode.getAttribute("media-id"))
+      let parentMedia = App.playlist.media_ids.indexOf(parentId)
+      let targetMedia = App.playlist.media_ids[parentMedia+1]
+      let targetButton = App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`)
+
+      if (targetButton === undefined) return null
+      targetButton.click()
+    })
   }
 
 
