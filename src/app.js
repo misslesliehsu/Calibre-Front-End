@@ -27,8 +27,6 @@ class App {
     App.handleCommentDelete();
     App.handleNewSearch()
     App.handleRepeat()
-
-
   }
 
   static getElements() {
@@ -277,12 +275,15 @@ class App {
 
     function commentDelete(e){
       //event propagation
-      if (e.target.className === 'delete'){
+      if (e.target.className === 'delete' && User.getCurrentUser() !== null && e.target.parentNode.dataset['userId'] == User.getCurrentUser().id){
         //delete comment node
         let commentId = parseInt(e.target.parentNode.dataset['commentId'])
         e.target.parentNode.remove()
         // remove comment
         Adapter.deleteComment(commentId)
+
+      } else if(e.target.className ==='delete') {
+        alert('You can only delete your own comments')
       }
         e.stopPropagation()
     }
