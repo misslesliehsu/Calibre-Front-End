@@ -24,10 +24,10 @@ const Adapter = (function(){
       }).then(res => res.json())
     }
 
-    static deletePlaylist(id){
-      return fetch(`${BASE_URL}playlists/${id}`, {
+    static deletePlaylist(currentUser_id, media_id){
+      return fetch(`${BASE_URL}playlists/${currentUser_id}/${media_id}`, {
         method: 'delete'
-      }).then(res => res.json())
+      })
     }
 
     // Comment Methods

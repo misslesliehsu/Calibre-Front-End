@@ -26,7 +26,6 @@ class App {
     App.handleCommentDelete();
     App.handleNewSearch()
     App.handleRepeat()
-    App.handleAutoPlay()
   }
 
   static getElements() {
@@ -47,25 +46,6 @@ class App {
     App.audio = document.querySelector('audio')
     // App.loginInput = document.getElementById("username-input").value
     const recommendations = document.querySelector('#recommendations')
-  }
-
-  static handleAutoPlay() {
-    App.audio.addEventListener('ended', (event) => {
-      if (App.playlist.running === true) {
-        if (track_index+1 === App.playlist.length) return null
-        track_index++
-        Medium.play(App.playlist.media_ids[track_index])
-      }
-    })
-
-    App.video.addEventListener('ended', (event) => {
-      if (App.playlist.running === true) {
-        if (track_index+1 === playlist.length) return null
-        track_index++
-        console.log("about to play the next song")
-        Medium.play(App.playlist.media_ids[track_index])
-      }
-    })
   }
 
 
@@ -113,9 +93,27 @@ class App {
         App.playlistArea.append(Playlist.templatePlaylistItem(clicked_id))
         //IF there is a current user, fetch POST to add this playlist item
         if (currentUser) {
-          Adapter.postPlaylist("noname", currentUser.id, clicked_id)
+          Adapter.postPlaylist("noname", currentUser.id, clicked_id).then(res=>{res.id})
         }
+        //now, remove "add to playlist" button to all instances of the item (i.e. in recs or library)
+
+        // document.querySelector('.card')
+        //find everything that has this as a data media id, and remove the button
+
+
       }
+
+      //handle click on "remove from playlist"
+      else if (event.target.className === "playlistRemove") {
+      //remove id from playlist array
+      App.playlist.removeItem(clicked_id)
+      //remove from the playlist area
+      let for_removal = App.playlistArea.querySelector(`div[data-media_id = "${clicked_id}"`)
+      for_removal.remove()
+      Adapter.deletePlaylist(currentUser.id, clicked_id)
+      }
+
+
     })
   }
 
@@ -176,7 +174,7 @@ class App {
           document.getElementById('displayUsername').innerText = `Welcome ${formInput}`
           let user = new User(data)
           User.setCurrentUser(user) // sets 'current user'
-
+          App.playlistArea.innerHTML = ''
           Adapter.returnPlaylist(user.id)
           .then(data => {
             data.forEach(media => {
@@ -274,7 +272,7 @@ class App {
 
     function commentDelete(e){
       //event propagation
-      if (e.target.className === 'delete' && e.target.parentNode.dataset['userId']){
+      if (e.target.className === 'delete' && e.target.parentNode.dataset['userId'] === User.getCurrentUser().id){
         //delete comment node
         let commentId = parseInt(e.target.parentNode.dataset['commentId'])
         e.target.parentNode.remove()

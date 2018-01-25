@@ -51,7 +51,7 @@ class Playlist {
 
   //REMOVES ITEM FROM PLAYLIST ARRAY
   removeItem(id) {
-    this.media_ids.splice( this.indexOf(id), 1 );
+    this.media_ids.splice( this.media_ids.indexOf(id), 1 );
   }
 
 //for playing playlist items (autoplay)
