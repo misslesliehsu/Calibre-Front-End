@@ -29,7 +29,6 @@ class App {
   }
 
   static getElements() {
-
     App.video = document.querySelector('#player video')
     App.audio = document.querySelector('#player audio')
     App.grid = document.querySelector('.grid')
