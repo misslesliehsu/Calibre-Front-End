@@ -24,11 +24,8 @@ class App {
     App.handleLogin();
     App.handleCommentSubmit();
     App.handleNewSearch()
-
     App.handleRepeat()
-
     App.handleAutoPlay()
-
 
   }
 
