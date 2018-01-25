@@ -68,7 +68,7 @@ h3 {
 
 body {
   font-family: 'Open Sans Condensed', sans-serif;
-  color: rgb(60, 70, );
+  color: rgb(255,255,255);
   margin: 20px;
 }
 /*
@@ -79,6 +79,13 @@ ul {
 
 }
 
+html {
+  background-color: black
+}
+
+*{
+  padding-left: 30px;
+}
 
 
 .grid {
@@ -93,7 +100,6 @@ ul {
   ". footer footer footer .";
 
 }
-
 
 
 /*.header {
@@ -133,7 +139,6 @@ ul {
   padding-top: 3px;
 }
 
-
 .playlist div .playlist-order {
   border: 1px solid transparent;
   position: absolute;
@@ -163,7 +168,6 @@ ul {
   margin: 3px;
 }
 
-
 .more-media {
   grid-area: more-media;
   border: 2px solid #dddddd;
@@ -192,11 +196,11 @@ ul {
   vertical-align: top;
 }
 
-.center-login {
+/*.center-login {
   margin: auto;
   width: 25%;
   padding: 10px;
-}
+}*/
 
 .rButton {
   width: 45%;
@@ -218,7 +222,6 @@ ul {
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .browse {
