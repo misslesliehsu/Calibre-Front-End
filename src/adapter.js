@@ -57,6 +57,12 @@ const Adapter = (function(){
       }).then(res => res.json())
     }
 
+    static deleteComment(id){
+      return fetch(`${BASE_URL}comments/${id}`, {
+        method: 'delete'
+      })
+    }
+
     //Media Methods
     static getMedia(){
       return fetch(`${BASE_URL}media`)
