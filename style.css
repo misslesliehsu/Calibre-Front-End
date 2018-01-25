@@ -196,11 +196,14 @@ html {
   vertical-align: top;
 }
 
-/*.center-login {
-  margin: auto;
-  width: 25%;
-  padding: 10px;
-}*/
+.center-login {
+  padding-left: 10px;
+}
+
+* {
+  margin: 0 auto;
+  float: left;
+}
 
 .rButton {
   width: 45%;
