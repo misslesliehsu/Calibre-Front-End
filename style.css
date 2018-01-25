@@ -80,13 +80,12 @@ ul {
 }
 
 html {
-  background-color: black
+  background-image: url('http://new.graphicpanic.com/wp-content/uploads/2015/09/high-resolution-scrap-metal-background.jpg')
 }
 
 *{
-  padding-left: 30px;
+  content:center;
 }
-
 
 .grid {
   display: grid;
