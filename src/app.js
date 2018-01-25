@@ -23,6 +23,7 @@ class App {
     App.handleLikeButton();
     App.handleLogin();
     App.handleCommentSubmit();
+    App.handleCommentDelete();
     App.handleNewSearch()
     App.handleRepeat()
     App.handleAutoPlay()
@@ -266,6 +267,25 @@ class App {
       //reset value
       commentInput.value = ''
     }
+  }
+
+  static handleCommentDelete(){
+    let commentsDiv = document.getElementById('comments')
+    commentsDiv.addEventListener('click', commentDelete)
+
+    function commentDelete(e){
+      //event propagation
+      if (e.target.className === 'delete'){
+        //delete comment node
+        let commentId = parseInt(e.target.parentNode.dataset['commentId'])
+        e.target.parentNode.remove()
+        // remove comment
+        Adapter.deleteComment(commentId)
+      }
+        e.stopPropagation()
+    }
+
+
   }
 
 
