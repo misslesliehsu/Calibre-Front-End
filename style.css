@@ -238,3 +238,7 @@ ul {
 [data-highlight = "true"] {
   border: 4px solid blue !important;
 }
+
+#shuffle {
+  float: right;
+}

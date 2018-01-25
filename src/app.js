@@ -31,6 +31,7 @@ class App {
     App.handleBrowse()
     App.handlePrevButton()
     App.handleNextButton()
+    App.handleShuffleButton()
   }
 
   static getElements() {
@@ -53,6 +54,7 @@ class App {
     App.nextButton = document.querySelector('#next')
     App.playerButton = document.querySelector('#playerButton')
     App.browseButton = document.querySelector('#browseButton')
+    App.shuffleButton = document.querySelector("#shuffle")
 
   }
 
@@ -326,7 +328,7 @@ class App {
 
   static handlePrevButton() {
     App.prevButton.addEventListener('click', (e) => {
-      e.stopPropagation()
+      // e.stopPropagation()
       let parentId = parseInt(App.video.parentNode.getAttribute("media-id"))
       let parentMedia = App.playlist.media_ids.indexOf(parentId)
       let targetMedia = App.playlist.media_ids[parentMedia-1]
@@ -336,7 +338,7 @@ class App {
       if (targetButton === undefined) {
         return null
       } else {
-        App.playlist.start(targetMedia)
+        targetButton.click()
       }
 
     })
@@ -354,6 +356,16 @@ class App {
     })
   }
 
-
-
+  static handleShuffleButton() {
+    //if app.playlist is not empty ()
+    //then take it, shuffle it
+    //then re-render it
+    App.shuffleButton.addEventListener("click", () => {
+      if (App.playlist.media_ids.length !== 0 ) {
+        App.playlist.media_ids.sort(function(a,b) {return a * Math.random() - b * Math.random()})
+        App.playlistArea.innerHTML = ''
+        App.playlist.media_ids.forEach(media_id => {App.playlistArea.append(Playlist.templatePlaylistItem(media_id))})
+      }
+    })
+  }
 }

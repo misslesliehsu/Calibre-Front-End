@@ -86,7 +86,6 @@ class Playlist {
         if (track_index+1 === App.playlist.media_ids.length) return null
         track_index++
         Medium.play(App.playlist.media_ids[track_index])
-        debugger
         let to_high = App.playlistArea.querySelector(`div[data-media_id = "${App.playlist.media_ids[track_index]}"`)
         to_high.dataset.highlight = "true"
 
