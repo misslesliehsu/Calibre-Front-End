@@ -181,22 +181,27 @@ class App {
       let formInput = document.getElementById("username-input").value
       if (formInput !== ""){
         //find or create a new user
-        Adapter.findOrCreateUser(formInput).then(data => {
-          // Add username to the dom.
-          document.getElementById('displayUsername').innerText = `Welcome ${formInput}`
-          let user = new User(data)
-          User.setCurrentUser(user) // sets 'current user'
-          App.playlistArea.innerHTML = ''
-          Adapter.returnPlaylist(user.id)
-          .then(data => {
-            data.forEach(media => {
-              App.playlistArea.append(Playlist.templatePlaylistItem(media.id))
-              App.playlist.addItem(media.id)
-              App.recommendations.innerHTML = ''
-              App.recommendations.appendChild(Medium.templateRecommendation())
+        if (User.getCurrentUser() === null){
+          Adapter.findOrCreateUser(formInput).then(data => {
+            // Add username to the dom.
+            document.getElementById('displayUsername').innerText = `Welcome ${formInput}`
+            let user = new User(data)
+            User.setCurrentUser(user) // sets 'current user'
+            App.playlistArea.innerHTML = ''
+            Adapter.returnPlaylist(user.id)
+            .then(data => {
+              data.forEach(media => {
+                App.playlistArea.append(Playlist.templatePlaylistItem(media.id))
+                App.playlist.addItem(media.id)
+                App.recommendations.innerHTML = ''
+                App.recommendations.appendChild(Medium.templateRecommendation())
+              })
             })
           })
-        })
+        }
+        //hide login
+        let loginForm = document.getElementById('login-form')
+        loginForm.style.display = 'none'
       }
     }
   }
