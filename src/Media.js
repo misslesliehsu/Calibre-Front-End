@@ -52,6 +52,7 @@ class Medium {
     let play_item = store.media.find(x => {return x.id === item_id})
 
     let player = document.getElementById('player')
+    //debugger
     player.setAttribute("media-id", item_id)
     App.video.src = ""
     App.audio.src = ""
@@ -78,7 +79,7 @@ class Medium {
         // show comments
       })
 
-      Adapter.getMediaComments(this.id)
+      Adapter.getMediaComments(item_id)
       .then(res => {
         let commentsArea = document.getElementById('comments')
         for (let item in commentsArea.children){
