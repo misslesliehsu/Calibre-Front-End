@@ -41,6 +41,10 @@ class Medium {
       <button class="addButton">+</button>
       <button class="playButton">►</button>
       `
+      //if this item is in the playlist, disable the addButton
+      if(App.playlist.media_ids.includes(rec.id)) {
+        mediaDiv.querySelector(".addButton").style.display = "none"
+      }
       recBar.appendChild(mediaDiv)
     })
     return recBar
@@ -106,6 +110,9 @@ class Medium {
     <button class="addButton">+</button>
     <button class="playButton">►</button>
     `
+    if(App.playlist.media_ids.includes(this.id)) {
+      mediaDiv.querySelector(".addButton").style.display = "none"
+    }
     return mediaDiv
   }
 
