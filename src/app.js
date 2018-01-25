@@ -51,8 +51,8 @@ class App {
     App.recommendations = document.querySelector('#recommendations')
     App.prevButton = document.querySelector('#prev')
     App.nextButton = document.querySelector('#next')
-    App.playerButton = document.querySelector('#player')
-    App.browseButton = document.querySelector('#browse')
+    App.playerButton = document.querySelector('#playerButton')
+    App.browseButton = document.querySelector('#browseButton')
 
   }
 
@@ -76,6 +76,7 @@ class App {
     document.addEventListener('click', event => {
       //lookup the media object that was clicked on
       let clicked_id = parseInt(event.target.parentNode.dataset.media_id)
+
 
       //handle click on "play"
       if (event.target.className === "playButton") {
@@ -118,6 +119,10 @@ class App {
       let for_removal = App.playlistArea.querySelector(`div[data-media_id = "${clicked_id}"`)
       for_removal.remove()
       if (currentUser) {Adapter.deletePlaylist(currentUser.id, clicked_id)}
+      }
+
+      else if (event.target.id === "prev") {
+
       }
 
 
@@ -304,29 +309,32 @@ class App {
   }
 
   static handlePrevButton() {
-    App.prevButton.addEventListener('click', () => {
-      console.log(App.video.parentNode.getAttribute("media-id"));
+    App.prevButton.addEventListener('click', (e) => {
+      e.stopPropagation()
       let parentId = parseInt(App.video.parentNode.getAttribute("media-id"))
       let parentMedia = App.playlist.media_ids.indexOf(parentId)
       let targetMedia = App.playlist.media_ids[parentMedia-1]
       let targetButton = App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`)
 
-      debugger
 
-      if (targetButton === undefined) return null
-      App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`).click()
+      if (targetButton === undefined) {
+        return null
+      } else {
+        App.playlist.start(targetMedia)
+      }
+
     })
   }
 
   static handleNextButton() {
-    App.prevButton.addEventListener('click', () => {
+    App.nextButton.addEventListener('click', () => {
       let parentId = parseInt(App.video.parentNode.getAttribute("media-id"))
       let parentMedia = App.playlist.media_ids.indexOf(parentId)
       let targetMedia = App.playlist.media_ids[parentMedia+1]
       let targetButton = App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`)
 
       if (targetButton === undefined) return null
-      App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`).click()
+      targetButton.click()
     })
   }
 
