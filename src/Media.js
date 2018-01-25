@@ -52,11 +52,11 @@ class Medium {
   }
 
   static play(item_id) {
-
+    
     let play_item = store.media.find(x => {return x.id === item_id})
 
     let player = document.getElementById('player')
-    //debugger
+    //
     player.setAttribute("media-id", item_id)
     App.video.src = ""
     App.audio.src = ""

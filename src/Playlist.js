@@ -56,10 +56,14 @@ class Playlist {
 
 //for playing playlist items (autoplay)
   start(starting_media_id) {
+
     Medium.play(starting_media_id)
 
     //get the playlist index the of the starting song
     let track_index = App.playlist.media_ids.indexOf(starting_media_id)
+    console.log(starting_media_id)
+    console.log(track_index)
+    console.log(App.playlist.media_ids)
 
     App.audio.addEventListener('ended', (event) => {
       if (App.playlist.running === true) {
