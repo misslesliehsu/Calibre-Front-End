@@ -2,7 +2,6 @@ class App {
   static init() {
   //capture important HTML elements, as App attributes
     App.getElements()
-
   //instantiate an empty playlist & establish as current playlist; instance will be updated upon login
     App.playlist = new Playlist([])
 
@@ -14,7 +13,9 @@ class App {
         store.media.push(current)
       })
     }).then(() => {
-      recommendations.appendChild(Medium.templateRecommendation())
+      App.recommendations.appendChild(Medium.templateRecommendation())
+      App.renderBrowse()
+      App.renderGrid()
     })
   //Add event listeners
     App.handleSearchBar();
@@ -47,7 +48,7 @@ class App {
     App.video = document.querySelector('video')
     App.audio = document.querySelector('audio')
     // App.loginInput = document.getElementById("username-input").value
-    const recommendations = document.querySelector('#recommendations')
+    App.recommendations = document.querySelector('#recommendations')
   }
 
 
@@ -98,9 +99,9 @@ class App {
           Adapter.postPlaylist("noname", currentUser.id, clicked_id).then(res=>{res.id})
         }
         //now, remove "add to playlist" button to all instances of the item (i.e. in recs or library)
+        App.recommendations.innerHTML = ''
+        App.recommendations.appendChild(Medium.templateRecommendation())
 
-        // document.querySelector('.card')
-        //find everything that has this as a data media id, and remove the button
 
 
       }
@@ -112,7 +113,7 @@ class App {
       //remove from the playlist area
       let for_removal = App.playlistArea.querySelector(`div[data-media_id = "${clicked_id}"`)
       for_removal.remove()
-      Adapter.deletePlaylist(currentUser.id, clicked_id)
+      if (currentUser) {Adapter.deletePlaylist(currentUser.id, clicked_id)}
       }
 
 
@@ -182,6 +183,8 @@ class App {
             data.forEach(media => {
               App.playlistArea.append(Playlist.templatePlaylistItem(media.id))
               App.playlist.addItem(media.id)
+              App.recommendations.innerHTML = ''
+              App.recommendations.appendChild(Medium.templateRecommendation())
             })
           })
         })

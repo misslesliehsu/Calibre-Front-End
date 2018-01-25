@@ -82,7 +82,7 @@ ul {
 
 
 .grid {
-  display: grid;
+  display: none;
   grid-template-columns: 1fr 4fr 5fr 4fr 1fr;
   grid-template-areas:
   ". header header header ."
@@ -224,4 +224,5 @@ ul {
 .browse {
   box-sizing: border-box;
   border: 1px solid red;
+  display:none;
 }
