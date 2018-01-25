@@ -36,8 +36,9 @@ class Playlist {
     playlistItem.dataset.media_id = mediaItem.id
     playlistItem.innerHTML = `
       <div class='playlist-main' data-media_id="${id}">
-        ${mediaItem.title} + "by " + ${mediaItem.artist}
-        <button class="playButton">Play Now</button>
+        ${mediaItem.title} by ${mediaItem.artist}
+        <button class="playButton">►</button>
+
         <button class="playlistRemove">X</button>
       </div>
       <div class="playlist-order">
@@ -66,19 +67,30 @@ class Playlist {
     console.log(App.playlist.media_ids)
 
     App.audio.addEventListener('ended', (event) => {
+      let playing_id = event.target.parentElement.getAttribute("media-id")
+      let to_un_high = App.playlistArea.querySelector(`div[data-media_id = "${playing_id}"]`)
+      to_un_high.dataset.highlight = "false"
       if (App.playlist.running === true) {
-        if (track_index+1 === App.playlist.length) return null
+        if (track_index+1 === App.playlist.media_ids.length) return null
         track_index++
         Medium.play(App.playlist.media_ids[track_index])
       }
     })
 
     App.video.addEventListener('ended', (event) => {
+
+      let playing_id = event.target.parentElement.getAttribute("media-id")
+      let to_un_high = App.playlistArea.querySelector(`div[data-media_id = "${playing_id}"]`)
+      to_un_high.dataset.highlight = "false"
       if (App.playlist.running === true) {
-        if (track_index+1 === playlist.length) return null
+        if (track_index+1 === App.playlist.media_ids.length) return null
         track_index++
-        console.log("about to play the next song")
         Medium.play(App.playlist.media_ids[track_index])
+        debugger
+        let to_high = App.playlistArea.querySelector(`div[data-media_id = "${App.playlist.media_ids[track_index]}"`)
+        to_high.dataset.highlight = "true"
+
+
       }
     })
   }
