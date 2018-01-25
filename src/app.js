@@ -27,10 +27,13 @@ class App {
     App.handleCommentDelete();
     App.handleNewSearch()
     App.handleRepeat()
+    App.handlePlayer()
+    App.handleBrowse()
+    App.handlePrevButton()
+    App.handleNextButton()
   }
 
   static getElements() {
-
     App.video = document.querySelector('#player video')
     App.audio = document.querySelector('#player audio')
     App.grid = document.querySelector('.grid')
@@ -45,8 +48,12 @@ class App {
     App.repeatButton = document.getElementById("repeat")
     App.video = document.querySelector('video')
     App.audio = document.querySelector('audio')
-    // App.loginInput = document.getElementById("username-input").value
     App.recommendations = document.querySelector('#recommendations')
+    App.prevButton = document.querySelector('#prev')
+    App.nextButton = document.querySelector('#next')
+    App.playerButton = document.querySelector('#playerButton')
+    App.browseButton = document.querySelector('#browseButton')
+
   }
 
 
@@ -69,6 +76,7 @@ class App {
     document.addEventListener('click', event => {
       //lookup the media object that was clicked on
       let clicked_id = parseInt(event.target.parentNode.dataset.media_id)
+
 
       //handle click on "play"
       if (event.target.className === "playButton") {
@@ -119,6 +127,10 @@ class App {
       let for_removal = App.playlistArea.querySelector(`div[data-media_id = "${clicked_id}"`)
       for_removal.remove()
       if (currentUser) {Adapter.deletePlaylist(currentUser.id, clicked_id)}
+      }
+
+      else if (event.target.id === "prev") {
+
       }
 
 
@@ -177,22 +189,27 @@ class App {
       let formInput = document.getElementById("username-input").value
       if (formInput !== ""){
         //find or create a new user
-        Adapter.findOrCreateUser(formInput).then(data => {
-          // Add username to the dom.
-          document.getElementById('displayUsername').innerText = `Welcome ${formInput}`
-          let user = new User(data)
-          User.setCurrentUser(user) // sets 'current user'
-          App.playlistArea.innerHTML = ''
-          Adapter.returnPlaylist(user.id)
-          .then(data => {
-            data.forEach(media => {
-              App.playlistArea.append(Playlist.templatePlaylistItem(media.id))
-              App.playlist.addItem(media.id)
-              App.recommendations.innerHTML = ''
-              App.recommendations.appendChild(Medium.templateRecommendation())
+        if (User.getCurrentUser() === null){
+          Adapter.findOrCreateUser(formInput).then(data => {
+            // Add username to the dom.
+            document.getElementById('displayUsername').innerText = `Welcome ${formInput}`
+            let user = new User(data)
+            User.setCurrentUser(user) // sets 'current user'
+            App.playlistArea.innerHTML = ''
+            Adapter.returnPlaylist(user.id)
+            .then(data => {
+              data.forEach(media => {
+                App.playlistArea.append(Playlist.templatePlaylistItem(media.id))
+                App.playlist.addItem(media.id)
+                App.recommendations.innerHTML = ''
+                App.recommendations.appendChild(Medium.templateRecommendation())
+              })
             })
           })
-        })
+        }
+        //hide login
+        let loginForm = document.getElementById('login-form')
+        loginForm.style.display = 'none'
       }
     }
   }
@@ -297,8 +314,44 @@ class App {
       }
         e.stopPropagation()
     }
+  }
+
+  static handlePlayer() {
+    App.playerButton.addEventListener('click', App.renderGrid)
+  }
+
+  static handleBrowse() {
+    App.browseButton.addEventListener('click', App.renderBrowse)
+  }
+
+  static handlePrevButton() {
+    App.prevButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      let parentId = parseInt(App.video.parentNode.getAttribute("media-id"))
+      let parentMedia = App.playlist.media_ids.indexOf(parentId)
+      let targetMedia = App.playlist.media_ids[parentMedia-1]
+      let targetButton = App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`)
 
 
+      if (targetButton === undefined) {
+        return null
+      } else {
+        App.playlist.start(targetMedia)
+      }
+
+    })
+  }
+
+  static handleNextButton() {
+    App.nextButton.addEventListener('click', () => {
+      let parentId = parseInt(App.video.parentNode.getAttribute("media-id"))
+      let parentMedia = App.playlist.media_ids.indexOf(parentId)
+      let targetMedia = App.playlist.media_ids[parentMedia+1]
+      let targetButton = App.playlistArea.querySelector(`div[data-media_id="${targetMedia}"] button[class="playButton"]`)
+
+      if (targetButton === undefined) return null
+      targetButton.click()
+    })
   }
 
 

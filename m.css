@@ -1,0 +1,59 @@
+.play-section {
+  height: 100vh;
+  display: grid;
+  grid-gap: 10px 10px;
+  grid-template-columns: 1fr 10fr 5fr 1fr;
+  grid-template-rows: 50% 5% 10% 30%;
+  grid-template-areas:
+  ". media     playlist ."
+  ". info      playlist ."
+  ". comment   playlist ."
+  ". recommend recommend ."
+}
+
+.media {
+  grid-area: media;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+.info {
+  grid-area: info;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+.comment {
+  grid-area: comment;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+.playlist {
+  grid-area: playlist;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+.recommend {
+  grid-area: recommend;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+
+.browse-section {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 13fr 1fr;
+  grid-template-rows: 5% 50% ;
+  grid-template-areas:
+  ". toggle   ."
+  ". content  ."
+}
+
+.toggle {
+  grid-area: toggle;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+.content {
+  grid-area: content;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
