@@ -11,6 +11,7 @@ class Comment {
     let commentLi = document.createElement('li')
     commentLi.className = 'media-comment'
     commentLi.setAttribute('data-comment-id', this.id)
+    commentLi.setAttribute('data-user-id', User.getCurrentUser().id)
     commentLi.innerText = this.content
     let deleteButton = document.createElement('button')
     deleteButton.innerHTML = 'delete'

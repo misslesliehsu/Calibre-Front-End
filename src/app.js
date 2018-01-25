@@ -27,7 +27,6 @@ class App {
     App.handleNewSearch()
     App.handleRepeat()
     App.handleAutoPlay()
-
   }
 
   static getElements() {
@@ -275,7 +274,7 @@ class App {
 
     function commentDelete(e){
       //event propagation
-      if (e.target.className === 'delete'){
+      if (e.target.className === 'delete' && e.target.parentNode.dataset['userId']){
         //delete comment node
         let commentId = parseInt(e.target.parentNode.dataset['commentId'])
         e.target.parentNode.remove()
