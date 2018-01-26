@@ -52,7 +52,7 @@ class Medium {
   }
 
   static play(item_id) {
-
+    App.renderGrid()
     let play_item = store.media.find(x => {return x.id === item_id})
 
     let player = document.getElementById('player')

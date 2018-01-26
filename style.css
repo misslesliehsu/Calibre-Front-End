@@ -126,18 +126,26 @@ ul {
 }
 
 .playlist div .playlist-main {
-  border: 1px solid transparent;
+  border: 1px transparent;
   position: absolute;
   right:0;
   width: 85%;
-  padding-top: 3px;
+  padding-right: 20px;
+  width: 70%;
+
+}
+
+.playlist div .playlist-main .playButton {
+  position: absolute;
+  bottom:5px;
+  left: 2px;
 }
 
 
 .playlist div .playlist-order {
-  border: 1px solid transparent;
+  border: 1px transparent;
   position: absolute;
-  left: 0;
+  left: 15px;
   width: 10%;
 }
 
@@ -225,4 +233,12 @@ ul {
   box-sizing: border-box;
   border: 1px solid red;
   display:none;
+}
+
+[data-highlight = "true"] {
+  border: 4px solid blue !important;
+}
+
+#shuffle {
+  float: right;
 }
