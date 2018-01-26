@@ -273,3 +273,23 @@ div.playlist-main .playlistRemove {
   text-align: center;
   padding-top: 20px;
 }
+
+
+[data-highlight = "true"] {
+  /*border: 4px solid #27262b !important;*/
+  border: 5px outset darkgrey !important;
+
+}
+
+.playBrowseIcon {
+  height: 10%;
+  width: 10%;
+}
+
+/*.playBrowseIcon [data-showing = "player"]{
+  content:url("playerOn.png")
+}
+
+.playBrowseIcon [data-showing = "browse"]{
+  content:url("browseOn.png")
+}*/

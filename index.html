@@ -26,7 +26,7 @@
     </form>
 
     <div id="displayUsername">
-      
+
     </div>
     <form class="center-login" id="login-form" style="display:inline-block">
       <div class = "center-login" id="displayUsername"></div>
@@ -35,8 +35,14 @@
     </form>
 
   </div>
-  <button id="playerButton">Player</button>
-  <button id="browseButton">Browse</button>
+
+  <img id="viewButton" class="playBrowseIcon" src="playerOn.png" alt="" usemap="#viewTabs"></img>
+
+  <map name="viewTabs">
+    <area id="playerButton" shape="rect" coords="0,0,50,100">
+    <area id="browseButton" shape="rect" coords="75,0,150,100">
+  </map>
+
 
   <div class="grid">
     <div id="player" class="media player">

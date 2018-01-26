@@ -31,9 +31,11 @@ class App {
     App.handlePrevButton()
     App.handleNextButton()
     App.handleShuffleButton()
+    // App.handleView()
   }
 
   static getElements() {
+    App.viewButton = document.querySelector('#viewButton')
     App.video = document.querySelector('#player video')
     App.audio = document.querySelector('#player audio')
     App.grid = document.querySelector('.grid')
@@ -237,6 +239,8 @@ class App {
     App.browse.innerHTML = ''
     App.video.src = ""
     App.audio.src = ""
+    App.viewButton.src = "browseOn.png"
+
 
 
 
@@ -253,8 +257,10 @@ class App {
   }
 
   static renderGrid() {
+
     App.browse.style.display = 'none'
     App.grid.style.display = 'grid'
+    App.viewButton.src = 'playerOn.png'
   }
 
 
@@ -317,13 +323,29 @@ class App {
     }
   }
 
+
+
+
   static handlePlayer() {
-    App.playerButton.addEventListener('click', App.renderGrid)
+    document.querySelector('#playerButton').addEventListener('click', App.renderGrid)
   }
 
+
+
   static handleBrowse() {
-    App.browseButton.addEventListener('click', App.renderBrowse)
+    document.querySelector('#browseButton').addEventListener('click', App.renderBrowse)
   }
+
+  // static handleView() {
+  //   App.viewButton.addEventListener('click', ()=>{
+  //     if (App.viewButton.src = 'browseOn.png') {App.renderGrid}
+  //     else if (App.viewButton.src= 'playerOn.png') {App.renderBrowse}
+  //     }
+  //   )
+  // }
+
+
+
 
   static handlePrevButton() {
     App.prevButton.addEventListener('click', (e) => {
