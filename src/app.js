@@ -359,7 +359,8 @@ class App {
     //if app.playlist is not empty ()
     //then take it, shuffle it
     //then re-render it
-    App.shuffleButton.addEventListener("click", () => {
+    App.shuffleButton.addEventListener("click", e => {
+      e.stopPropagation()
       if (App.playlist.media_ids.length !== 0 ) {
         App.playlist.media_ids.sort(function(a,b) {return a * Math.random() - b * Math.random()})
         App.playlistArea.innerHTML = ''

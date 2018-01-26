@@ -78,12 +78,22 @@ h1 {
   display: grid;
   grid-gap: 10px 10px;
   grid-template-columns: 1fr 7fr 4fr 1fr;
-  grid-template-rows: 50% 5% auto auto;
+  grid-template-rows: 1% 50% 5% auto auto;
   grid-template-areas:
+  ". media     buttons  ."
   ". media     playlist ."
   ". info      playlist ."
   ". comment   playlist ."
   ". recommend recommend ."
+}
+
+.buttons {
+  grid-area: buttons;
+}
+
+.buttons button {
+  background: none;
+  border: 0;
 }
 
 .media {
@@ -257,4 +267,9 @@ div.playlist-main .playlistRemove {
 
 * {
   font-weight: bold !important;
+}
+
+#displayUsername {
+  text-align: center;
+  padding-top: 20px;
 }
