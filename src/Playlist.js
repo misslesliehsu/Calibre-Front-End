@@ -34,15 +34,14 @@ class Playlist {
     let mediaItem = store.media.find((x) => x.id === id)
     let playlistItem = document.createElement('div')
     playlistItem.dataset.media_id = mediaItem.id
+    playlistItem.className = "playlist-item"
     playlistItem.innerHTML = `
       <div class='playlist-main' data-media_id="${id}">
-        ${mediaItem.title} + "by " + ${mediaItem.artist}
-        <button class="playButton">Play Now</button>
+        ${mediaItem.title} <br> ${mediaItem.artist} <br>
+        <button class="playButton">►</button>
         <button class="playlistRemove">X</button>
-      </div>
-      <div class="playlist-order">
-        <i class="fa fa-angle-double-up" style="font-size:24px;color:gray"></i>
-        <i class="fa fa-angle-double-down" style="font-size:24px;color:gray"></i>
+        <i class="fa fa-angle-double-up" style="font-size:24px;color:#6B6B6B"></i>
+        <i class="fa fa-angle-double-down" style="font-size:24px;color:#6B6B6B"></i>
       </div>
       `
     return playlistItem
