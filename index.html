@@ -15,7 +15,7 @@
 
   <div class="header">
     <div class="logo">
-      <img src="logo.png" alt="Calibre" width="100" height="auto">
+      <img src="logo.png" alt="Calibre" width="100" height="auto" onclick="App.renderGrid()">
       <!-- <h1 style="display:inline-block">Calibre Media Player</h1> -->
     </div>
 
@@ -39,15 +39,15 @@
   <img id="viewButton" class="playBrowseIcon" src="playerOn.png" alt="" usemap="#viewTabs"></img>
 
   <map name="viewTabs">
-    <area id="playerButton" shape="rect" coords="0,0,50,100">
-    <area id="browseButton" shape="rect" coords="75,0,150,100">
+    <area id="playerButton" shape="rect" coords="0,0,50,100" onclick="App.renderGrid()">
+    <area id="browseButton" shape="rect" coords="75,0,150,100" onclick="App.renderBrowse()">
   </map>
 
 
   <div class="grid">
     <div id="player" class="media player">
       <video controls autoplay width="auto" style="display:none;"></video>
-      <audio controls autoplay  style="display:none;"></audio>
+      <audio controls autoplay width="716px" style="display:none;"></audio>
       <br>
 
     </div>

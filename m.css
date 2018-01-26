@@ -44,6 +44,7 @@ h1 {
 }
 
 .logo {
+  padding-top: 5px;
   grid-area: logo;
 }
 
@@ -71,6 +72,16 @@ h1 {
 
 .center-login {
   grid-area: login;
+}
+
+#displayUsername {
+  grid-area: login;
+  padding-bottom: 5px;
+}
+
+audio {
+  width: 1000px;
+  vertical-align: text-bottom;
 }
 
 .grid {
@@ -241,8 +252,10 @@ div.playlist-main .playlistRemove {
 }
 
 .media-comment {
+  padding-top: 7px;
   list-style: none;
   border-bottom: 1px solid #D3C5D9;
+  font-weight: lighter;
 }
 
 .media-comment button{
@@ -265,31 +278,19 @@ div.playlist-main .playlistRemove {
   margin: 0px 0px 20px 0px;
 }
 
-* {
+/* * {
   font-weight: bold !important;
-}
+} */
 
 #displayUsername {
   text-align: center;
   padding-top: 20px;
-}
 
-
-[data-highlight = "true"] {
-  /*border: 4px solid #27262b !important;*/
+}[data-highlight = "true"] {
   border: 5px outset darkgrey !important;
-
 }
 
 .playBrowseIcon {
   height: 10%;
   width: 10%;
 }
-
-/*.playBrowseIcon [data-showing = "player"]{
-  content:url("playerOn.png")
-}
-
-.playBrowseIcon [data-showing = "browse"]{
-  content:url("browseOn.png")
-}*/

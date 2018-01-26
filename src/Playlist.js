@@ -60,9 +60,6 @@ class Playlist {
 
     //get the playlist index the of the starting song
     let track_index = App.playlist.media_ids.indexOf(starting_media_id)
-    console.log(starting_media_id)
-    console.log(track_index)
-    console.log(App.playlist.media_ids)
 
     App.audio.addEventListener('ended', (event) => {
       let playing_id = event.target.parentElement.getAttribute("media-id")

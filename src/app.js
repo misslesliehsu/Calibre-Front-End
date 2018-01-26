@@ -26,12 +26,9 @@ class App {
     App.handleCommentDelete();
     App.handleSearch()
     App.handleRepeat()
-    App.handlePlayer()
-    App.handleBrowse()
     App.handlePrevButton()
     App.handleNextButton()
     App.handleShuffleButton()
-    // App.handleView()
   }
 
   static getElements() {
@@ -242,9 +239,6 @@ class App {
     App.audio.src = ""
     App.viewButton.src = "browseOn.png"
 
-
-    console.log(store.media)
-
   for (var i = 0; i < store.media.length; i++) {
     App.browse.append(store.media[i].templateSearchItem())
   }
@@ -318,30 +312,6 @@ class App {
     }
   }
 
-
-
-
-  static handlePlayer() {
-    document.querySelector('#playerButton').addEventListener('click', App.renderGrid)
-  }
-
-
-
-  static handleBrowse() {
-    document.querySelector('#browseButton').addEventListener('click', App.renderBrowse)
-  }
-
-  // static handleView() {
-  //   App.viewButton.addEventListener('click', ()=>{
-  //     if (App.viewButton.src = 'browseOn.png') {App.renderGrid}
-  //     else if (App.viewButton.src= 'playerOn.png') {App.renderBrowse}
-  //     }
-  //   )
-  // }
-
-
-
-
   static handlePrevButton() {
     App.prevButton.addEventListener('click', (e) => {
       // e.stopPropagation()
@@ -373,9 +343,6 @@ class App {
   }
 
   static handleShuffleButton() {
-    //if app.playlist is not empty ()
-    //then take it, shuffle it
-    //then re-render it
     App.shuffleButton.addEventListener("click", e => {
       e.stopPropagation()
       if (App.playlist.media_ids.length !== 0 ) {
