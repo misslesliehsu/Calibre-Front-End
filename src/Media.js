@@ -27,7 +27,7 @@ class Medium {
   //RETURNS A FULL DIV OF RECOMMENDATIONS
   static templateRecommendation(){
     //how to make this sort pass through only?
-    let sorted = store.media.sort((a,b) => {b.like_count - a.like_count})
+    let sorted = store.media.sort((a,b) => {b.like_count - a.like_count}).reverse()
     let recs = sorted.slice(0,4)
     let recBar = document.createElement('div')
     recBar.className = "recBar"
@@ -36,8 +36,8 @@ class Medium {
       mediaDiv.className = 'card'
       mediaDiv.dataset.media_id = rec.id
       mediaDiv.innerHTML = `
-      <p>${rec.title}</p>
-      <p>${rec.file_src}</p>
+      <span class="mTitle">${rec.title}</span><br>
+      <p class="mArtist">${rec.artist}</p><br>
       <button class="addButton">+</button>
       <button class="playButton">►</button>
       `
@@ -65,7 +65,7 @@ class Medium {
       case "video":
         App.audio.style.display = "none"
         App.video.style.display = "inline"
-        App.video.width = App.video.parentNode.clientWidth
+        App.video.height = App.video.parentNode.clientHeight
         App.video.src = play_item.file_src
         break;
       case "audio":

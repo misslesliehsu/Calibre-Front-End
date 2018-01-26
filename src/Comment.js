@@ -14,7 +14,7 @@ class Comment {
     commentLi.setAttribute('data-user-id', this.user_id)
     commentLi.innerText = this.content
     let deleteButton = document.createElement('button')
-    deleteButton.innerHTML = 'delete'
+    deleteButton.innerHTML = '⌫'
     deleteButton.className = 'delete'
     commentLi.appendChild(deleteButton)
     return commentLi

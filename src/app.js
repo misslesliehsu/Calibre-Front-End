@@ -18,14 +18,13 @@ class App {
       App.renderGrid()
     })
   //Add event listeners
-    App.handleSearchBar();
     App.handleMediaClick();
     App.handleClicks()
     App.handleLikeButton();
     App.handleLogin();
     App.handleCommentSubmit();
     App.handleCommentDelete();
-    App.handleNewSearch()
+    App.handleSearch()
     App.handleRepeat()
     App.handlePlayer()
     App.handleBrowse()
@@ -216,7 +215,7 @@ class App {
     }
   }
 
-  static handleNewSearch() {
+  static handleSearch() {
     document.querySelector('.form').addEventListener('submit', e => {
       e.preventDefault()
       App.renderBrowse();
@@ -240,7 +239,7 @@ class App {
     App.audio.src = ""
 
 
-    //6
+
     let array = []
     while (array.length < store.media.length-1) {
       let media = store.media[Math.floor(Math.random() * store.media.length)]

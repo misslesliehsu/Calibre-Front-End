@@ -2,118 +2,82 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel='stylesheet' type='text/css' href='style.css'>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <link rel='stylesheet' type='text/css' href='m.css'>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Calibre Media Player</title>
-  <h1 style="margin: 50px">Calibre Media Player</h1>
-  <br>
 </head>
 
 <body>
+  <div class="background">
+    <img src="background.png">
+  </div>
+
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Calibre" width="100" height="auto">
+      <!-- <h1 style="display:inline-block">Calibre Media Player</h1> -->
+    </div>
+
+    <form class="form" style="display:inline-block">
+      <input id='search-bar'>
+      <button type="submit" id="search-submit">S</button>
+      <br>
+    </form>
+
+    <form class="center-login" id="login-form" style="display:inline-block">
+      <div class = "center-login" id="displayUsername"></div>
+      <input type="text" name="username" placeholder="Username" id='username-input'>
+      <input type='submit' value="Login">
+    </form>
+
+  </div>
   <button id="playerButton">Player</button>
   <button id="browseButton">Browse</button>
 
-  <div id="login">
-    <div class = "center-login" id="displayUsername"></div>
-    <form class="center-login" id="login-form">
-      <input type="text" name="username" placeholder="Username" id='username-input' value="">
-      <input type='submit' id='submitLogin' value="Login">
-    </form>
-  </div>
+  <div class="grid">
+    <div id="player" class="media player">
+      <video controls autoplay width="auto" style="display:none;"></video>
+      <audio controls autoplay  style="display:none;"></audio>
+      <br>
 
+    </div>
 
+    <div class="info">
+      <span>Likes:
+        <span id="likes">0</span>
+      </span>
+      <button id="like_button">🔥</button>
+    </div>
 
-  <div class="header">
-    <form class="form">
-      <input id='search-bar'>
-      <button type="submit">Search</button>
-    </form>
+    <div id="comments" class="comment comments">
+
+      <form id='commentInput'>
+        <input type='text' name='content' placeholder = 'Enter a comment...' id='commentSubmit' >
+        <br>
+        <input type='submit' value='Submit Comment' id="commentSubmit2">
+      </form>
+    </div>
+
+    <div id="playlist" class="playlist">
+      <button id="repeat">Repeat?</button>
+      <button id="prev">prev</button>
+      <button id="next">next</button>
+    </div>
+
+    <div id="more-media" class="recommend more-media">
+
+      <div id="recommendations">
+
+      </div>
+
+    </div>
+
   </div>
 
   <div class="browse">
 
   </div>
-
-  <div class="grid">
-    <div id="player" class="player">
-      <video controls autoplay height="auto" width="400" style="display:none;"></video>
-      <audio controls autoplay height="auto" width="400" style="display:none;"></audio>
-      <p id="title-artist"></p>
-      <button id="repeat">Repeat?</button>
-      <button id="prev">prev</button>
-      <button id="next">next</button>
-      <button id="shuffle">Shuffle Playlist</button>
-
-    </div>
-
-
-    <div id="comments" class="comments">
-      <span>Likes:
-        <span id="likes">0</span>
-      </span>
-      <button id="like_button">Like</button>
-
-      <h3>Comments:</h3>
-      <form id='commentInput'>
-        <input type='text' name='content' placeholder = 'Enter a comment...' id='commentSubmit' >
-        <input type='submit' value='Submit'>
-      </form>
-        <li>this is a fake comment</li>
-    </div>
-
-    <div id="playlist" class="playlist"></div>
-
-    <div id="more-media" class="more-media">
-      this is the recommendations / library area<br>
-      <div id="recommendations">
-        <li>this is an example recommendation</li>
-      </div>
-      <!-- <input id='search-bar' type="text" name="" value=""> -->
-      <div id="search-results"></div>
-
-      <button type="button" name="button">Show More</button>
-
-    </div>
-
-
-    <div id="footer" class="footer">
-    this is the footer
-    </div>
-
-  </div>
-
-  <!-- <div class="header">
-    <input id='search-bar' type="text" placeholder="Type here to search">
-  </div>
-
-  <div class="play-section">
-    <div class="media">
-      media
-    </div>
-    <div class="info">
-      info
-    </div>
-    <div class="comment">
-      comment
-    </div>
-    <div class="playlist">
-      playlist
-    </div>
-    <div class="recommend">
-      recommend
-    </div>
-  </div>
-
-  <div class="browse-section">
-    <div class="toggle">
-      <button>A</button>
-      <button>B</button>
-    </div>
-    <div class="content">
-      content
-    </div>
-  </div> -->
 
   <script type="text/javascript" src="src/index.js"></script>
   <script type="text/javascript" src="src/Media.js"></script>

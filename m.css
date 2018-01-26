@@ -1,9 +1,84 @@
-.play-section {
+body {
+  margin: 0;
+  font-family: 'Open Sans Condensed', sans-serif;
+
+  /* font-weight: bold; */
+}
+
+/* body::before {
+  background: url(https://www.arum.co.uk/wp-content/uploads/2014/01/website-background-transparency.png);
+  opacity: 0.5;
+  position: absolute;
+} */
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    opacity: 0.3;
+    filter:alpha(opacity=80);
+    z-index: -1;
+}
+
+h1 {
+  text-align: center;
+  font-size: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+  padding: 7px 2% 0px 2%;
+  background: #B098B5;
+
+  display: grid;
+  grid-template-columns: 1.8fr 3fr 1.8fr;
+
+  grid-template-areas:
+  "logo search login"
+}
+
+.logo {
+  grid-area: logo;
+}
+
+.form {
+  padding-top: 3%;
+  text-align: center;
+  grid-area: search;
+}
+
+#search-bar {
+  text-align: center;
+  border: 0;
+  margin-right: 0;
+  width: 88%;
+  height: 70%;
+}
+
+#search-submit {
+  border: 0;
+
+  margin-left: 0;
+  width: 7%;
+  height: 70%;
+}
+
+.center-login {
+  grid-area: login;
+}
+
+.grid {
   height: 100vh;
   display: grid;
   grid-gap: 10px 10px;
-  grid-template-columns: 1fr 10fr 5fr 1fr;
-  grid-template-rows: 50% 5% 10% 30%;
+  grid-template-columns: 1fr 7fr 4fr 1fr;
+  grid-template-rows: 50% 5% auto auto;
   grid-template-areas:
   ". media     playlist ."
   ". info      playlist ."
@@ -12,39 +87,39 @@
 }
 
 .media {
+  text-align: center;
+  background: #D3C5D9;
   grid-area: media;
   box-sizing: border-box;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 .info {
   grid-area: info;
-  box-sizing: border-box;
-  border: 2px solid red;
 }
 .comment {
   grid-area: comment;
-  box-sizing: border-box;
-  border: 2px solid red;
 }
 .playlist {
   grid-area: playlist;
-  box-sizing: border-box;
-  border: 2px solid red;
+  overflow: auto;
+  max-height: 70vh;
+  /* background: #4A4A4A; */
 }
 .recommend {
   grid-area: recommend;
-  box-sizing: border-box;
-  border: 2px solid red;
 }
 
-.browse-section {
-  height: 100vh;
+.browse{
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: auto;
   display: grid;
-  grid-template-columns: 1fr 13fr 1fr;
-  grid-template-rows: 5% 50% ;
+  grid-gap: 10px 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
   grid-template-areas:
-  ". toggle   ."
-  ". content  ."
+  ". . . ."
 }
 
 .toggle {
@@ -56,4 +131,130 @@
   grid-area: content;
   box-sizing: border-box;
   border: 2px solid red;
+}
+
+
+
+.recBar {
+  display: flex;
+  /* width: 100%; */
+  /* flex-flow: row wrap; */
+  /* align-items: center; */
+  justify-content: space-between;
+
+}
+
+.card {
+  padding: 3px;
+  margin: 1% 1% 0px 1%;
+  min-width: 20%;
+  float: left;
+  box-shadow: 5px 5px 10px lightgrey;
+  text-align: center;
+  background: #D3C5D9;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 10px grey;
+}
+
+.hidden{
+    display:none;
+}
+
+.unhidden{
+    display:block;
+}
+
+
+#username-input {
+  width: 50%;
+  border: 0;
+}
+
+.center-login {
+  text-align: right;
+  padding-top: 6%;
+  display: inline;
+}
+
+.center-login input[type="submit"] {
+  border: 0;
+}
+
+.playlist-item {
+  text-align: center;
+  background: #D3C5D9;
+  /* box-shadow: 0px 2px 0px grey; */
+  border: 2px solid darkgrey;
+
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin: 1% 1% 1.5% 1%;
+
+}
+
+.playlist-item:hover {
+  /* box-shadow: 0px 2px 0px darkgrey; */
+  border-color: grey;
+}
+
+div.playlist-main .playButton {
+  width: 4%;
+  border: 0;
+  background: none;
+  font-size: 15px;
+  color: #6B6B6B;
+}
+
+div.playlist-main .playlistRemove {
+  width: 4%;
+  border: 0;
+  background: none;
+  font-size: 15px;
+  color: #6B6B6B;
+}
+
+#commentSubmit {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 99%;
+}
+
+#commentSubmit2 {
+  box-sizing: border-box;
+  width: 99%;
+  margin: 0px 0px 2px 0px;
+  padding: 0;
+  background: lightgrey;
+}
+
+.media-comment {
+  list-style: none;
+  border-bottom: 1px solid #D3C5D9;
+}
+
+.media-comment button{
+  font-size: 15px;
+  background: none;
+  border: 0;
+  margin-left: 1%;
+}
+
+#like_button {
+  border-radius: 50%;
+}
+
+.mTitle {
+
+  width: 100%
+}
+
+.mArtist {
+  margin: 0px 0px 20px 0px;
+}
+
+* {
+  font-weight: bold !important;
 }
