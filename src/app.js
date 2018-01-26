@@ -117,6 +117,7 @@ class App {
         //now, remove "add to playlist" button to all instances of the item (i.e. in recs or library)
         App.recommendations.innerHTML = ''
         App.recommendations.appendChild(Medium.templateRecommendation())
+        if (App.browse.style.display === "grid") {App.renderBrowse()}
 
 
 
@@ -242,17 +243,11 @@ class App {
     App.viewButton.src = "browseOn.png"
 
 
+    console.log(store.media)
 
-
-    let array = []
-    while (array.length < store.media.length-1) {
-      let media = store.media[Math.floor(Math.random() * store.media.length)]
-      if (!array.includes(media)) {
-        array.push(media)
-        document.querySelector('.browse').append(media.templateSearchItem())
-      }
-    }
-
+  for (var i = 0; i < store.media.length; i++) {
+    App.browse.append(store.media[i].templateSearchItem())
+  }
     App.browse.style.display = 'grid'
   }
 
