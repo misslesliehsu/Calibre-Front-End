@@ -264,9 +264,9 @@ class App {
       App.video.loop = !App.video.loop
 
       if (App.audio.loop) {
-        App.repeatButton.innerHTML = "Remove Repeat"
+        App.repeatButton.innerHTML = "Stop Repeat"
       } else {
-        App.repeatButton.innerHTML = "Repeat?"
+        App.repeatButton.innerHTML = "Repeat"
       }
     })
   }
